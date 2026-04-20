@@ -1,0 +1,332 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Users del admin
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  firstName String?
+  lastName  String?
+  role      String   @default("editor") // owner, admin, editor, support
+  isActive  Boolean  @default(true)
+  lastLogin DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  @@index([email])
+  @@index([role])
+}
+
+// Destinos (Medellín, Guatapé, etc)
+model Destination {
+  id                 String   @id @default(cuid())
+  name               String   @unique
+  slug               String   @unique
+  description        String?
+  shortDescription   String?
+
+  featuredImage      String?
+  galleryImages      Json?    // Array de URLs
+
+  latitude           Float?
+  longitude          Float?
+  city               String?
+  region             String?
+
+  metaTitle          String?
+  metaDescription    String?
+  keywords           Json?    // Array de keywords
+
+  isPublished        Boolean  @default(true)
+  order              Int      @default(0)
+
+  tours              Tour[]   // Relación con tours
+
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  deletedAt          DateTime?
+
+  @@index([slug])
+  @@index([isPublished])
+}
+
+// Categorías de actividades (Aventura, Naturaleza, etc)
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  description String?
+  icon      String?
+  color     String?
+  order     Int      @default(0)
+
+  tours     Tour[]   // Relación con tours
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+}
+
+// Tours principales
+model Tour {
+  id                  String   @id @default(cuid())
+  slug                String   @unique
+  title               String
+  description         String?
+  longDescription     String?  // Rich text
+
+  // Pricing & Duration
+  priceAdult          Float    // Precio por adulto
+  priceChild          Float?   // Precio por niño (opcional)
+  duration            String   // e.g., "3 hours", "Full day"
+
+  // Media
+  featuredImage       String?
+  galleryImages       Json?    // Array de URLs
+  videoUrl            String?
+
+  // Location & Map
+  latitude            Float?
+  longitude           Float?
+  meetingPoint        String?
+
+  // Details
+  itinerary           Json?    // Array de steps
+  includes            Json?    // Array
+  excludes            Json?    // Array
+  requirements        String?
+  maxParticipants     Int?
+  minAge              Int?
+  maxAge              Int?
+
+  // Relations
+  destinationId       String
+  destination         Destination @relation(fields: [destinationId], references: [id])
+
+  categoryId          String
+  category            Category @relation(fields: [categoryId], references: [id])
+
+  // SEO
+  metaTitle           String?
+  metaDescription     String?
+
+  // Admin
+  isPublished         Boolean  @default(false)
+  isFeatured          Boolean  @default(false)
+  order               Int      @default(0)
+
+  // Relations to other models
+  inquiries           Inquiry[]
+  faqs                TourFaq[]
+  testimonials        Testimonial[]
+  availabilities      TourAvailability[]
+  reservations        Reservation[]
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  deletedAt           DateTime?
+
+  @@index([destinationId])
+  @@index([categoryId])
+  @@index([slug])
+  @@index([isPublished])
+  @@index([isFeatured])
+}
+
+// FAQs de Tours
+model TourFaq {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String
+  order     Int      @default(0)
+
+  tourId    String
+  tour      Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([tourId])
+}
+
+// Leads / Inquiries (consultas de usuarios)
+model Inquiry {
+  id          String   @id @default(cuid())
+
+  // Usuario info
+  name        String
+  email       String
+  phone       String?
+  message     String?
+
+  // Tour & source
+  tourId      String?
+  tour        Tour?    @relation(fields: [tourId], references: [id], onDelete: SetNull)
+  source      String   @default("web") // web, whatsapp, email, phone
+
+  // Lead status
+  status      String   @default("new") // new, responded, converted, abandoned
+  notes       String?  // Admin notes
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tourId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Blog Posts
+model BlogPost {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  excerpt         String?
+  content         String?  // Rich text
+
+  featuredImage   String?
+  author          String?
+
+  metaTitle       String?
+  metaDescription String?
+
+  isPublished     Boolean  @default(false)
+  publishedAt     DateTime?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  @@index([slug])
+  @@index([isPublished])
+}
+
+// Testimonios
+model Testimonial {
+  id          String   @id @default(cuid())
+
+  name        String
+  email       String?
+  content     String
+  rating      Int      @default(5) // 1-5
+
+  image       String?
+
+  status      String   @default("pending") // pending, approved, rejected
+
+  // Relations to tours (optional - for tour-specific testimonials)
+  tourId      String?
+  tour        Tour?    @relation(fields: [tourId], references: [id], onDelete: SetNull)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status])
+  @@index([tourId])
+}
+
+// Disponibilidad de Tours
+model TourAvailability {
+  id          String   @id @default(cuid())
+
+  tourId      String
+  tour        Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
+
+  // Fecha y hora de disponibilidad
+  date        DateTime // Fecha del tour
+  startTime   String?  // e.g., "09:00"
+  endTime     String?  // e.g., "12:00"
+
+  // Control de capacidad
+  maxSpots    Int      // Máximo de participantes
+  bookedSpots Int      @default(0) // Participantes reservados
+  
+  isActive    Boolean  @default(true)
+
+  // Relación con reservas
+  reservations Reservation[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tourId])
+  @@index([date])
+}
+
+// Reservas
+model Reservation {
+  id          String   @id @default(cuid())
+
+  tourId      String
+  tour        Tour     @relation(fields: [tourId], references: [id], onDelete: Restrict)
+
+  availabilityId String
+  availability   TourAvailability @relation(fields: [availabilityId], references: [id], onDelete: Restrict)
+
+  // Información del cliente
+  fullName    String
+  email       String
+  phone       String
+
+  // Detalles de la reserva
+  adultsCount Int      @default(1)
+  childrenCount Int    @default(0)
+  
+  // Cálculo de precio
+  pricePerAdult    Float
+  pricePerChild    Float?
+  totalPrice       Float   // adultsCount * pricePerAdult + childrenCount * pricePerChild
+
+  // Status de la reserva
+  status      String   @default("pending") // pending, confirmed, cancelled, completed
+  notes       String?  // Notas especiales del cliente
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tourId])
+  @@index([availabilityId])
+  @@index([status])
+  @@index([email])
+}
+
+// Site Settings
+model SiteSettings {
+  id                String  @id @default(cuid())
+
+  // Branding
+  siteName          String  @default("Turtle Bus")
+  siteDescription   String?
+  logo              String?
+  favicon           String?
+
+  // Contact
+  email             String?
+  phone             String?
+  whatsapp          String?
+  address           String?
+
+  // Social
+  instagramUrl      String?
+  facebookUrl       String?
+  tiktokUrl         String?
+
+  // SEO
+  googleAnalyticsId String?
+  sitemap           Json?   // Cache of sitemap
+
+  updatedAt         DateTime @updatedAt
+}

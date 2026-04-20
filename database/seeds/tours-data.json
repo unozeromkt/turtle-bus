@@ -1,0 +1,653 @@
+[
+  {
+    "slug": "tour-guatape-full-day",
+    "title": "Tour Guatapé Full Day",
+    "price_adult": 129000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "cultural",
+    "description": "Experiencia completa de día entero en Guatapé con crucero por la represa, visita al pueblo y almuerzo incluido.",
+    "long_description": "Tour completo desde Medellín hacia Guatapé que incluye transporte directo, snack, almuerzo, crucero por la represa, tiempo libre en el pueblo y visita a la Piedra del Peñol con ascenso opcional.",
+    "price_child": null,
+    "meeting_point": "Carrera 70 con Avenida San Juan / Parque de El Poblado, Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=500&fit=crop",
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Snack",
+      "Almuerzo",
+      "Crucero por la represa",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [
+      "Entrada a la Piedra del Peñol"
+    ],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": true,
+    "order": 1
+  },
+  {
+    "slug": "tour-guatape-express",
+    "title": "Tour a Guatapé Express",
+    "price_adult": 99000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "cultural",
+    "description": "Tour express a Guatapé con transporte directo y refrigerio.",
+    "long_description": "Opción rápida y económica para visitar Guatapé con transporte en autos de lujo, snack incluido y tiempo libre para explorar.",
+    "price_child": null,
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": null,
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Snack",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": false,
+    "order": 2
+  },
+  {
+    "slug": "tour-guatape-mas-aventura",
+    "title": "Tour a Guatapé Más Aventura",
+    "price_adult": 199000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "aventura",
+    "description": "Experiencia de aventura en Guatapé con actividades adicionales y adrenalina.",
+    "long_description": "Tour diseñado para quienes desean combinar la visita a Guatapé con actividades de aventura en el destino.",
+    "price_child": null,
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=500&fit=crop",
+    "video_url": null,
+    "includes": [],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": true,
+    "order": 3
+  },
+  {
+    "slug": "tour-guatape-acuatico-wakeboard",
+    "title": "Tour Guatapé Acuático – Wakeboard",
+    "price_adult": 380000,
+    "duration": "10 horas",
+    "destination_slug": "guatape",
+    "category_slug": "aventura",
+    "description": "Tour acuático en Guatapé con experiencia de wakeboard en la represa.",
+    "long_description": "Vive una experiencia de adrenalina practicando wakeboard en la represa de Guatapé, con transporte de lujo, snack y tiempo libre en el pueblo.",
+    "price_child": null,
+    "meeting_point": "Carrera 70 con Avenida San Juan / Parque de El Poblado, Medellín",
+    "max_participants": 18,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1505904267569-f02eaeb45e60?w=600&h=500&fit=crop",
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Snack",
+      "Actividad de wakeboard",
+      "Tiempo libre en Guatapé",
+      "Asistente en el viaje"
+    ],
+    "excludes": [
+      "Almuerzo",
+      "Entrada Piedra del Peñol",
+      "Otras actividades"
+    ],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": true,
+    "order": 4
+  },
+  {
+    "slug": "tour-guatape-helicoptero",
+    "title": "Tour a Guatapé + Vuelo en Helicóptero",
+    "price_adult": 520000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "aventura",
+    "description": "Experiencia premium en Guatapé con vuelo panorámico en helicóptero.",
+    "long_description": "Tour premium a Guatapé que combina recorrido terrestre con experiencia aérea en helicóptero sobre la represa y el Peñol.",
+    "price_child": null,
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1540575467063-178f50002c4b?w=600&h=500&fit=crop",
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Vuelo en helicóptero",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [],
+    "itinerary": [
+      {
+        "step": 1,
+        "title": "Salida desde Medellín",
+        "description": "Salida en transporte privado desde Medellín hacia el punto de despegue en Guatapé. Viaje aproximado de 1 hora y 45 minutos."
+      },
+      {
+        "step": 2,
+        "title": "Llegada y prep para el vuelo",
+        "description": "Llegada al aeródromo. Briefing de seguridad y instrucciones previas al vuelo en helicóptero."
+      },
+      {
+        "step": 3,
+        "title": "Vuelo panorámico",
+        "description": "Vuelo de aproximadamente 45 minutos sobre la represa de Guatapé, la Piedra del Peñol y paisajes circundantes. Fotografías aéreas incluidas."
+      },
+      {
+        "step": 4,
+        "title": "Tiempo libre en Guatapé",
+        "description": "2 horas libres para explorar el pueblo colorido, almorzar en restaurantes locales y disfrutar de las tiendas de artesanías."
+      },
+      {
+        "step": 5,
+        "title": "Regreso a Medellín",
+        "description": "Regreso en transporte privado a Medellín. Llegada estimada 6:30 PM."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Es seguro volar en helicóptero?",
+        "answer": "Sí, totalmente seguro. Nuestros pilotos tienen certificación internacional y cumplimos con todos los estándares de seguridad. El helicóptero se revisa antes de cada vuelo.",
+        "order": 1
+      },
+      {
+        "question": "¿Hay restricciones de peso para volar?",
+        "answer": "Sí, el peso máximo permitido es de 120 kg por razones de seguridad y equilibrio del helicóptero.",
+        "order": 2
+      },
+      {
+        "question": "¿Qué pasa si hay mal clima?",
+        "answer": "Si las condiciones climáticas no son seguras para volar, reagendaremos el vuelo sin costo adicional. La seguridad es nuestra prioridad.",
+        "order": 3
+      },
+      {
+        "question": "¿Puedo traer cámara?",
+        "answer": "Claro, trae tu cámara o teléfono para capturar las mejores vistas. Proporcionamos bolsas seguras para tu equipaje.",
+        "order": 4
+      }
+    ],
+    "testimonials": [
+      {
+        "author": "Rolando Barberi",
+        "content": "Guatapé desde arriba es simplemente espectacular. Vale la pena totalmente.",
+        "rating": 5,
+        "featured": true
+      },
+      {
+        "author": "Karla Noguera",
+        "content": "Fue increíble! jamás olvidaré este día. Si puede ser algo costoso, pero para mi valió mucho la pena.",
+        "rating": 5,
+        "featured": true
+      }
+    ],
+    "is_published": true,
+    "is_featured": true,
+    "order": 5
+  },
+  {
+    "slug": "tour-guatape-cuatrimoto",
+    "title": "Tour a Guatapé + Cuatrimoto",
+    "price_adult": 320000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "aventura",
+    "description": "Tour a Guatapé con experiencia de recorrido en cuatrimoto por rutas de aventura.",
+    "long_description": "Combina la visita al pueblo de Guatapé con una experiencia off-road en cuatrimoto por senderos y caminos rurales de la zona.",
+    "price_child": null,
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=500&fit=crop",
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Actividad en cuatrimoto",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [
+      "Entrada Piedra del Peñol",
+      "Almuerzo"
+    ],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": true,
+    "order": 6
+  },
+  {
+    "slug": "tour-guatape-jet-ski",
+    "title": "Tour a Guatapé + Jet Ski",
+    "price_adult": 360000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "aventura",
+    "description": "Experiencia de jet ski en la represa de Guatapé con tour completo al destino.",
+    "long_description": "Disfruta de un recorrido completo a Guatapé complementado con una actividad acuática de jet ski en la represa.",
+    "price_child": null,
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1527004013197-933b4cb48ea1?w=600&h=500&fit=crop",
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Actividad de jet ski",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [
+      "Entrada Piedra del Peñol",
+      "Almuerzo"
+    ],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": true,
+    "order": 7
+  },
+  {
+    "slug": "tour-guatape-pontoon-privado",
+    "title": "Tour a Guatapé + Pontoon Privado",
+    "price_adult": 450000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "naturaleza",
+    "description": "Experiencia premium en pontoon privado navegando la represa de Guatapé.",
+    "long_description": "Tour de lujo a Guatapé con navegación privada en pontoon por la represa y visita al pueblo.",
+    "price_child": null,
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": null,
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Pontoon privado",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": false,
+    "order": 8
+  },
+  {
+    "slug": "tour-guatape-parapente",
+    "title": "Tour a Guatapé + Parapente",
+    "price_adult": 390000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "aventura",
+    "description": "Tour de aventura en Guatapé con vuelo en parapente sobre paisajes naturales.",
+    "long_description": "Visita Guatapé y vive la experiencia de volar en parapente con vistas panorámicas de la represa y montañas de Antioquia.",
+    "price_child": null,
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=500&fit=crop",
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Vuelo en parapente",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": true,
+    "order": 9
+  },
+  {
+    "slug": "tour-guatape-cabalgata",
+    "title": "Tour a Guatapé + Cabalgata",
+    "price_adult": 295000,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "naturaleza",
+    "description": "Tour a Guatapé con experiencia de cabalgata por paisajes rurales.",
+    "long_description": "Combina la visita a Guatapé con una cabalgata guiada por rutas naturales y rurales cercanas al destino.",
+    "price_child": null,
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": null,
+    "video_url": null,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Cabalgata guiada",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": [],
+    "is_published": true,
+    "is_featured": false,
+    "order": 10
+  },
+  {
+    "slug": "paragliding-medellin",
+    "title": "Paragliding en Medellín",
+    "description": "Vuela sobre el Valle de Aburrá con instructores certificados en el mejor spot de Colombia.",
+    "long_description": "Vive la experiencia más emocionante que Medellín tiene para ofrecer. El vuelo en parapente en tándem te permite elevarte sobre el Valle de Aburrá y ver la ciudad desde una perspectiva que muy pocos conocen. Nuestros instructores tienen más de 5 años de experiencia y certificación internacional. No necesitas experiencia previa.",
+    "price_adult": 180000,
+    "price_child": null,
+    "duration": "3 horas",
+    "destination_slug": "medellin",
+    "category_slug": "aventura",
+    "featured_image": "https://images.unsplash.com/photo-1540575467063-178f50002c4b?w=600&h=500&fit=crop",
+    "video_url": null,
+    "meeting_point": "Aeródromo Olaya Herrera, Medellín",
+    "max_participants": 8,
+    "min_age": 12,
+    "max_age": 70,
+    "requirements": "Peso máximo 100kg. Buenas condiciones físicas. No apto para personas con problemas cardíacos.",
+    "is_published": true,
+    "is_featured": true,
+    "order": 1,
+    "includes": [
+      "Equipo de vuelo certificado",
+      "Instructor bilingüe certificado",
+      "Seguro de accidentes",
+      "Fotos y videos del vuelo",
+      "Certificado de participación"
+    ],
+    "excludes": [
+      "Transporte al punto de encuentro",
+      "Alimentación",
+      "Propina para el instructor"
+    ],
+    "itinerary": [
+      {
+        "step": 1,
+        "title": "Llegada y registro",
+        "description": "Llegada al aeródromo, registro y briefing de bienvenida."
+      },
+      {
+        "step": 2,
+        "title": "Briefing de seguridad",
+        "description": "Instrucciones de seguridad y entrenamiento básico de 20 minutos."
+      },
+      {
+        "step": 3,
+        "title": "Vuelo en tándem",
+        "description": "Vuelo de 20-30 minutos sobre el Valle de Aburrá con tu instructor."
+      },
+      {
+        "step": 4,
+        "title": "Aterrizaje y fotos",
+        "description": "Aterrizaje seguro, revisión de fotos y videos, entrega de certificado."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Necesito experiencia previa?",
+        "answer": "No. El vuelo es en tándem, tu instructor pilota en todo momento. Solo disfruta.",
+        "order": 1
+      },
+      {
+        "question": "¿Qué pasa si hay mal tiempo?",
+        "answer": "Reagendamos sin costo. La seguridad es lo primero y no volamos con vientos superiores a 30 km/h.",
+        "order": 2
+      },
+      {
+        "question": "¿Hay límite de peso?",
+        "answer": "Sí, el peso máximo es 100kg por razones de seguridad del equipo.",
+        "order": 3
+      }
+    ],
+    "testimonials": [
+      {
+        "author": "Diego Martínez",
+        "content": "La experiencia más increíble de mi vida. Ver Medellín desde arriba es algo que no tiene precio. Los instructores son profesionales al 100%.",
+        "rating": 5,
+        "featured": true
+      }
+    ]
+  },
+  {
+    "slug": "piedra-penol-guatape",
+    "title": "Piedra del Peñol + Guatapé",
+    "description": "Sube los 740 escalones de la Piedra del Peñol y explora el colorido pueblo de Guatapé.",
+    "long_description": "Una experiencia única que combina el reto físico de subir los 740 escalones de la Piedra del Peñol con el encanto cultural del pueblo de Guatapé. Desde la cima tendrás una vista de 360° del embalse más hermoso de Colombia. Luego recorreremos las calles con los famosos zócalos pintados a mano.",
+    "price_adult": 85000,
+    "price_child": 45000,
+    "duration": "9 horas",
+    "destination_slug": "guatape",
+    "category_slug": "aventura",
+    "featured_image": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=500&fit=crop",
+    "video_url": null,
+    "meeting_point": "Terminal Norte de Medellín, puerta 8",
+    "max_participants": 20,
+    "min_age": 6,
+    "max_age": null,
+    "requirements": "Calzado deportivo. Llevar agua y protector solar. Nivel físico moderado para subir los escalones.",
+    "is_published": true,
+    "is_featured": true,
+    "order": 2,
+    "includes": [
+      "Transporte ida y vuelta desde Medellín",
+      "Guía local bilingüe",
+      "Entrada a la Piedra del Peñol",
+      "Tiempo libre en Guatapé",
+      "Seguro de viaje"
+    ],
+    "excludes": [
+      "Alimentación",
+      "Souvenirs",
+      "Actividades acuáticas opcionales"
+    ],
+    "itinerary": [
+      {
+        "step": 1,
+        "title": "Salida desde Medellín",
+        "description": "Salida en bus privado desde el Terminal Norte. Viaje de 1h45min."
+      },
+      {
+        "step": 2,
+        "title": "Subida a la Piedra del Peñol",
+        "description": "Ascenso por los 740 escalones con guía. Tiempo estimado: 30-45 minutos."
+      },
+      {
+        "step": 3,
+        "title": "Panorámica en la cima",
+        "description": "45 minutos en la cima disfrutando las vistas del embalse y fotografías."
+      },
+      {
+        "step": 4,
+        "title": "Recorrido por Guatapé",
+        "description": "2 horas libres para explorar el pueblo, almorzar y ver los zócalos."
+      },
+      {
+        "step": 5,
+        "title": "Regreso a Medellín",
+        "description": "Regreso en bus. Llegada aproximada 6:00 PM."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "¿Es difícil subir la Piedra del Peñol?",
+        "answer": "Es moderado. Los 740 escalones tienen pasamanos. La mayoría de personas lo logran en 30-45 minutos. Hay lugares para descansar.",
+        "order": 1
+      },
+      {
+        "question": "¿Qué ropa debo llevar?",
+        "answer": "Ropa cómoda, zapatos deportivos cerrados, protector solar, sombrero y agua. En días de lluvia lleva impermeable.",
+        "order": 2
+      },
+      {
+        "question": "¿Hay almuerzo incluido?",
+        "answer": "No está incluido, pero tendrás tiempo libre para almorzar en Guatapé. Hay muchos restaurantes con bandeja paisa y trucha típica.",
+        "order": 3
+      }
+    ],
+    "testimonials": [
+      {
+        "author": "María López",
+        "content": "El viaje a Guatapé fue perfecto. La Piedra es impresionante y el pueblo es hermoso. El guía conocía cada rincón.",
+        "rating": 5,
+        "featured": true
+      }
+    ]
+  },
+  {
+    "slug": "tour-alto-del-chocho-guatape",
+    "title": "Tour al Alto del Chocho y Tour a Guatapé",
+    "price_adult": 150000,
+    "price_child": null,
+    "duration": "10 horas",
+    "destination_slug": "guatape",
+    "category_slug": "naturaleza",
+    "description": "Tour panorámico de naturaleza que combina visita al Alto del Chocho con recorrido por Guatapé.",
+    "long_description": "Experiencia ideal para quienes desean combinar miradores naturales y paisajes montañosos con la visita tradicional a Guatapé.",
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": null,
+    "video_url": null,
+    "is_published": true,
+    "is_featured": false,
+    "order": 11,
+    "includes": [],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": []
+  },
+  {
+    "slug": "tour-guatape-2-dias-1-noche",
+    "title": "Tour Guatapé 2 Días + 1 Noche",
+    "price_adult": 590000,
+    "price_child": null,
+    "duration": "2 días / 1 noche",
+    "destination_slug": "guatape",
+    "category_slug": "naturaleza",
+    "description": "Experiencia extendida en Guatapé con hospedaje incluido.",
+    "long_description": "Plan de dos días para vivir Guatapé con más calma, incluyendo alojamiento, actividades y tiempo libre adicional.",
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=500&fit=crop",
+    "video_url": null,
+    "is_published": true,
+    "is_featured": true,
+    "order": 12,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Hospedaje 1 noche"
+    ],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": []
+  },
+  {
+    "slug": "tour-guatape-cafe",
+    "title": "Tour Guatapé 1 Día + Tour del Café",
+    "price_adult": 260000,
+    "price_child": null,
+    "duration": "1 día",
+    "destination_slug": "guatape",
+    "category_slug": "gastronomia",
+    "description": "Tour combinado de Guatapé con experiencia cafetera.",
+    "long_description": "Disfruta la visita a Guatapé junto con una inmersión en la cultura cafetera de Antioquia.",
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=600&h=500&fit=crop",
+    "video_url": null,
+    "is_published": true,
+    "is_featured": true,
+    "order": 13,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Experiencia cafetera",
+      "Tiempo libre en Guatapé"
+    ],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": []
+  },
+  {
+    "slug": "tour-guatape-3d",
+    "title": "Tour Guatapé 3D (3 Días / 2 Noches)",
+    "price_adult": 899000,
+    "price_child": null,
+    "duration": "3 días / 2 noches",
+    "destination_slug": "guatape",
+    "category_slug": "naturaleza",
+    "description": "Experiencia completa de inmersión en Guatapé durante tres días.",
+    "long_description": "Plan premium de tres días diseñado para vivir Guatapé a profundidad con hospedaje, actividades y experiencias extendidas.",
+    "meeting_point": "Medellín",
+    "max_participants": null,
+    "min_age": null,
+    "max_age": null,
+    "requirements": null,
+    "featured_image": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=500&fit=crop",
+    "video_url": null,
+    "is_published": true,
+    "is_featured": true,
+    "order": 14,
+    "includes": [
+      "Transporte ida y vuelta",
+      "Hospedaje 2 noches"
+    ],
+    "excludes": [],
+    "itinerary": [],
+    "faqs": [],
+    "testimonials": []
+  }
+]

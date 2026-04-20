@@ -1,0 +1,44 @@
+{
+  "name": "turtle-bus",
+  "version": "0.1.0",
+  "description": "Plataforma turística para tours en Medellín, Guatapé y Antioquia",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "seed:tours": "node database/seeds/seed-tours.js",
+    "seed:tours:dry": "node database/seeds/seed-tours.js --dry-run",
+    "seed:tours:delete": "node database/seeds/seed-tours.js --delete"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.0",
+    "@prisma/client": "^5.7.0",
+    "@supabase/supabase-js": "^2.103.0",
+    "clsx": "^2.0.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^0.299.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-calendar": "^6.0.1",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.48.0",
+    "tailwindcss": "^3.4.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "^15.0.0",
+    "postcss": "^8.4.0",
+    "prisma": "^5.7.0",
+    "typescript": "^5.3.0"
+  }
+}
