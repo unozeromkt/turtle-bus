@@ -64,8 +64,10 @@ export function ItineraryTab({ tourId, initialItinerary = [] }: ItineraryTabProp
 
   function handleChangeStep(index: number, field: keyof ItineraryItem, value: string) {
     const newItinerary = [...itinerary]
-    newItinerary[index][field] = value
-    setItinerary(newItinerary)
+    if (newItinerary[index]) {
+      newItinerary[index][field] = value
+      setItinerary(newItinerary)
+    }
   }
 
   return (

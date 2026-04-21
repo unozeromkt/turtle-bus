@@ -1,20 +1,30 @@
 import { supabase } from './supabase'
+import imageCompression from 'browser-image-compression'
 
 const STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public`
+
+export interface CompressionOptions {
+  /** Calidad de salida entre 0 y 1. Default: 0.85 */
+  quality?: number
+  /** Tamaño máximo en MB tras comprimir. Default: 1 */
+  maxSizeMB?: number
+  /** Dimensión máxima (ancho o alto) en px. Default: 1920 */
+  maxWidthOrHeight?: number
+}
 
 export interface UploadOptions {
   bucket: 'tour-featured' | 'tour-gallery'
   folder: string
-  maxSize?: number // en bytes
+  compression?: CompressionOptions
 }
 
 type MimeType = 'image/jpeg' | 'image/png' | 'image/webp'
 const ALLOWED_MIME_TYPES: MimeType[] = ['image/jpeg', 'image/png', 'image/webp']
 
 /**
- * Validar archivo antes de subir
+ * Validar archivo antes de subir (solo tipo y límite duro de 50MB)
  */
-export function validateFile(file: File, maxSize: number = 5 * 1024 * 1024) {
+export function validateFile(file: File, maxSize: number = 50 * 1024 * 1024) {
   if (!ALLOWED_MIME_TYPES.includes(file.type as MimeType)) {
     throw new Error(
       'Formato no permitido. Solo JPG, PNG y WebP están permitidos.'
@@ -22,9 +32,22 @@ export function validateFile(file: File, maxSize: number = 5 * 1024 * 1024) {
   }
 
   if (file.size > maxSize) {
-    const maxMB = Math.round(maxSize / 1024 / 1024)
-    throw new Error(`Archivo muy grande. Máximo ${maxMB}MB.`)
+    throw new Error('El archivo es demasiado grande para procesar.')
   }
+}
+
+/**
+ * Comprimir imagen en el cliente antes de subir.
+ * Se convierte a WebP automáticamente.
+ */
+async function compressImage(file: File, opts: CompressionOptions = {}): Promise<File> {
+  return imageCompression(file, {
+    maxSizeMB: opts.maxSizeMB ?? 1,
+    maxWidthOrHeight: opts.maxWidthOrHeight ?? 1920,
+    useWebWorker: true,
+    fileType: 'image/webp',
+    initialQuality: opts.quality ?? 0.85,
+  })
 }
 
 /**
@@ -34,24 +57,25 @@ export async function uploadFile(
   file: File,
   options: UploadOptions
 ): Promise<string> {
-  // Validar
-  const maxSize = options.bucket === 'tour-featured' ? 10 * 1024 * 1024 : 5 * 1024 * 1024
-  validateFile(file, maxSize)
+  // Validar tipo y límite duro antes de comprimir
+  validateFile(file)
 
-  // Generar nombre único con caracteres seguros
-  const ext = file.name.split('.').pop()?.toLowerCase()
-  // Usar solo números y letras para evitar problemas de encoding
+  // Comprimir y convertir a WebP en el cliente
+  const compressed = await compressImage(file, options.compression)
+
+  // El nombre siempre termina en .webp tras la compresión
   const randomStr = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-  const fileName = `${Date.now()}-${randomStr.replace(/[^a-z0-9]/g, '')}.${ext}`
+  const fileName = `${Date.now()}-${randomStr.replace(/[^a-z0-9]/g, '')}.webp`
   const path = `${options.folder}/${fileName}`
 
   try {
     // Realizar upload
     const { error } = await supabase.storage
       .from(options.bucket)
-      .upload(path, file, {
+      .upload(path, compressed, {
         cacheControl: '3600',
         upsert: false,
+        contentType: 'image/webp',
       })
 
     if (error) throw error

@@ -92,9 +92,9 @@ export default function AdminDestinationsPage() {
   async function handleTogglePublish(id: string, isPublished: boolean, slug: string) {
     try {
       const result = await toggleDestinationPublish(id, isPublished, slug)
-      if (result.success) {
+      if (result.success && result.data) {
         setDestinations(
-          destinations.map((d) => (d.id === id ? { ...d, is_published: result.data.is_published } : d))
+          destinations.map((d) => (d.id === id ? { ...d, is_published: result.data!.is_published } : d))
         )
       }
     } catch (err) {

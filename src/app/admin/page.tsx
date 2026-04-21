@@ -1,21 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import { BarChart3, Users, MessageSquare, Package } from 'lucide-react'
+import { BarChart3, TrendingUp, MessageSquare, Package } from 'lucide-react'
 
 export default function AdminDashboard() {
   // Mock data
   const stats = [
     { label: 'Tours Activos', value: 12, icon: Package },
-    { label: 'Leads este mes', value: 45, icon: Users },
+    { label: 'Tours Destacados', value: 8, icon: TrendingUp },
     { label: 'Testimonios', value: 23, icon: MessageSquare },
-    { label: 'Conversiones', value: 8, icon: BarChart3 },
-  ]
-
-  const recentLeads = [
-    { id: 1, name: 'Diego M.', tour: 'Paragliding', date: 'Hoy' },
-    { id: 2, name: 'María López', tour: 'Guatapé', date: 'Ayer' },
-    { id: 3, name: 'Carlos R.', tour: 'Comuna 13', date: 'Hace 2 días' },
+    { label: 'Destinos', value: 4, icon: BarChart3 },
   ]
 
   return (
@@ -46,39 +40,31 @@ export default function AdminDashboard() {
 
       {/* Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Recent Leads */}
+        {/* Platform Status */}
         <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-sm">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold">Leads Recientes</h2>
-            <Link href="/admin/leads" className="text-primary-600 hover:underline text-sm">
-              Ver todos →
-            </Link>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Tour</th>
-                  <th>Fecha</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentLeads.map((lead) => (
-                  <tr key={lead.id}>
-                    <td className="font-semibold">{lead.name}</td>
-                    <td>{lead.tour}</td>
-                    <td className="text-gray-600">{lead.date}</td>
-                    <td>
-                      <button className="text-primary-600 hover:underline text-sm">
-                        Responder
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <h2 className="text-xl font-bold mb-6">Estado de la Plataforma</h2>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 border-l-4 border-green-500 bg-green-50">
+              <div>
+                <p className="font-semibold">Tours Publicados</p>
+                <p className="text-sm text-gray-600">Listos para reservación</p>
+              </div>
+              <p className="text-2xl font-bold text-green-600">12</p>
+            </div>
+            <div className="flex items-center justify-between p-4 border-l-4 border-blue-500 bg-blue-50">
+              <div>
+                <p className="font-semibold">Tours en Borrador</p>
+                <p className="text-sm text-gray-600">Esperando publicación</p>
+              </div>
+              <p className="text-2xl font-bold text-blue-600">3</p>
+            </div>
+            <div className="flex items-center justify-between p-4 border-l-4 border-purple-500 bg-purple-50">
+              <div>
+                <p className="font-semibold">Artículos Blog</p>
+                <p className="text-sm text-gray-600">Contenido publicado</p>
+              </div>
+              <p className="text-2xl font-bold text-purple-600">9</p>
+            </div>
           </div>
         </div>
 
@@ -103,12 +89,6 @@ export default function AdminDashboard() {
               className="block p-4 bg-gray-400 text-white rounded-lg hover:bg-gray-500 font-semibold"
             >
               + Nuevo Post
-            </Link>
-            <Link
-              href="/admin/leads"
-              className="block p-4 border-2 border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 font-semibold"
-            >
-              Ver todos los Leads
             </Link>
           </div>
         </div>

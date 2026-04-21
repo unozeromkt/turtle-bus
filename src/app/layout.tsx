@@ -4,6 +4,11 @@ import '@/styles/globals.css'
 export const metadata: Metadata = {
   title: 'Turtle Bus - Tours y Experiencias en Medellín y Guatapé',
   description: 'Descubre tours de aventura, naturaleza y cultura en Medellín, Guatapé y Antioquia. Reserva tu experiencia única hoy.',
+  icons: {
+    icon: '/images/favicon-turtle.png',
+    shortcut: '/images/favicon-turtle.png',
+    apple: '/images/favicon-turtle.png',
+  },
   openGraph: {
     title: 'Turtle Bus - Tours y Experiencias Increíbles',
     description: 'Tours de aventura en Medellín y Guatapé',
@@ -20,7 +25,6 @@ export default function RootLayout({
     <html lang="es">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="bg-neutral-light text-neutral-dark">
         {children}

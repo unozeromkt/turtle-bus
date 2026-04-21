@@ -1,0 +1,16 @@
+import bcryptjs from 'bcryptjs'
+
+/**
+ * Hash a password using bcryptjs
+ */
+export async function hashPassword(password: string): Promise<string> {
+  const saltRounds = 10
+  return await bcryptjs.hash(password, saltRounds)
+}
+
+/**
+ * Verify a password against a hash
+ */
+export async function verifyPassword(password: string, hash: string): Promise<boolean> {
+  return await bcryptjs.compare(password, hash)
+}

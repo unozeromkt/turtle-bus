@@ -18,12 +18,20 @@ interface AvailabilityCheckerProps {
   onAvailabilitySelect?: (availability: Availability) => void
 }
 
+// Helper function to get date string in YYYY-MM-DD format
+function getDateString(daysOffset: number = 0): string {
+  const date = new Date(Date.now() + 86400000 * daysOffset)
+  const isoString = date.toISOString()
+  const parts = isoString.split('T')
+  return parts[0] || new Date().toISOString().split('T')[0] || '2024-01-01'
+}
+
 export function AvailabilityChecker({
   tourId,
   availabilities = [
     {
       id: '1',
-      date: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+      date: getDateString(1),
       startTime: '09:00',
       endTime: '12:00',
       maxSpots: 8,
@@ -31,7 +39,7 @@ export function AvailabilityChecker({
     },
     {
       id: '2',
-      date: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
+      date: getDateString(2),
       startTime: '14:00',
       endTime: '17:00',
       maxSpots: 8,
@@ -39,7 +47,7 @@ export function AvailabilityChecker({
     },
     {
       id: '3',
-      date: new Date(Date.now() + 86400000 * 3).toISOString().split('T')[0],
+      date: getDateString(3),
       startTime: '09:00',
       endTime: '12:00',
       maxSpots: 8,

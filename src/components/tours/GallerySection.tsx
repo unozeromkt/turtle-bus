@@ -12,17 +12,20 @@ interface GallerySectionProps {
 export function GallerySection({ images, title = 'Galería de imágenes' }: GallerySectionProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
-  if (!images || images.length === 0) return null
+  // Filtrar imágenes válidas
+  const validImages = images.filter((img): img is string => typeof img === 'string' && img.length > 0)
+
+  if (!validImages || validImages.length === 0) return null
 
   const handlePrev = () => {
     setSelectedIndex((prev) =>
-      prev === null ? images.length - 1 : prev === 0 ? images.length - 1 : prev - 1
+      prev === null ? validImages.length - 1 : prev === 0 ? validImages.length - 1 : prev - 1
     )
   }
 
   const handleNext = () => {
     setSelectedIndex((prev) =>
-      prev === null ? 0 : prev === images.length - 1 ? 0 : prev + 1
+      prev === null ? 0 : prev === validImages.length - 1 ? 0 : prev + 1
     )
   }
 
@@ -32,7 +35,7 @@ export function GallerySection({ images, title = 'Galería de imágenes' }: Gall
 
       {/* Thumbnail Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-        {images.map((image, idx) => (
+        {validImages.map((image, idx) => (
           <button
             key={idx}
             onClick={() => setSelectedIndex(idx)}
@@ -79,7 +82,7 @@ export function GallerySection({ images, title = 'Galería de imágenes' }: Gall
 
           <div className="relative w-full max-w-4xl max-h-[80vh]">
             <Image
-              src={images[selectedIndex]}
+              src={validImages[selectedIndex] || ''}
               alt={`Galería ${selectedIndex + 1}`}
               width={1200}
               height={800}

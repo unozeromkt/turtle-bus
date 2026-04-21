@@ -21,7 +21,6 @@ export default async function EditTourPage({
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Editar Tour: {tour.title}</h1>
       <EditTourTabs initialData={tour} />
     </div>
   )

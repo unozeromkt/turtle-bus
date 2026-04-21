@@ -23,7 +23,7 @@ export default function TourForm({
   const [destinations, setDestinations] = useState<any[]>([])
   const [categories, setCategories] = useState<any[]>([])
   const [loadingOptions, setLoadingOptions] = useState(true)
-  const [featuredImage, setFeaturedImage] = useState<string | undefined>(
+  const [featuredImage, setFeaturedImage] = useState<string | null | undefined>(
     initialData?.featured_image || undefined
   )
   const [galleryImages, setGalleryImages] = useState<string[]>(
@@ -80,10 +80,6 @@ export default function TourForm({
         setMessage(result.message)
         if (!isEditing) {
           ;(e.target as HTMLFormElement).reset()
-          setTimeout(() => {
-            router.push('/admin/tours')
-          }, 500)
-        } else {
           setTimeout(() => {
             router.push('/admin/tours')
           }, 500)

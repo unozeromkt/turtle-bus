@@ -5,8 +5,8 @@ import { useFileUpload } from '@/hooks/useFileUpload'
 import { X, Upload, Loader2 } from 'lucide-react'
 
 interface ImageUploadProps {
-  value?: string
-  onChange: (url: string | null) => void
+  value?: string | null
+  onChange: (url: string | null | undefined) => void
   label?: string
   placeholder?: string
   className?: string

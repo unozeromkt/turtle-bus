@@ -20,7 +20,7 @@ export default function DestinationForm({
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
-  const [featuredImage, setFeaturedImage] = useState<string | undefined>(
+  const [featuredImage, setFeaturedImage] = useState<string | null | undefined>(
     initialData?.featured_image || undefined
   )
   const [galleryImages, setGalleryImages] = useState<string[]>(
@@ -203,19 +203,19 @@ export default function DestinationForm({
         <div>
           <label className="block text-sm font-semibold mb-2">Imagen Destacada</label>
           <ImageUpload
-            currentImage={featuredImage}
-            onImageSelect={setFeaturedImage}
-            destinationPath="destinations/featured"
+            value={featuredImage}
+            onChange={setFeaturedImage}
+            label="Imagen Destacada"
+            placeholder="Haz clic para subir o arrastra una imagen"
           />
         </div>
 
         <div>
           <label className="block text-sm font-semibold mb-2">Galería de Imágenes</label>
           <GalleryUpload
-            currentImages={galleryImages}
-            onImagesChange={setGalleryImages}
+            value={galleryImages}
+            onChange={setGalleryImages}
             maxImages={10}
-            destinationPath="destinations/gallery"
           />
         </div>
       </div>

@@ -46,7 +46,7 @@ export default async function ToursPage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=600&fit=crop')`,
+            backgroundImage: `url('/images/CTA-home.jpg')`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-800/80 via-primary-600/50 to-transparent" />

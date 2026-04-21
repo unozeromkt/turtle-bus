@@ -9,7 +9,7 @@ import { TestimonialsTab } from '@/components/admin/TestimonialsTab'
 import { ItineraryTab } from '@/components/admin/ItineraryTab'
 import { IncludesExcludesTab } from '@/components/admin/IncludesExcludesTab'
 
-type TabType = 'general' | 'faqs' | 'testimonials' | 'itinerary' | 'includes' | 'availabilities' | 'media'
+type TabType = 'general' | 'faqs' | 'testimonials' | 'itinerary' | 'includes'
 
 interface EditPageProps {
   initialData: any
@@ -26,8 +26,6 @@ export function EditTourTabs({ initialData }: EditPageProps) {
     { id: 'includes', label: 'Incluye / Excluye', icon: '✓✗' },
     { id: 'faqs', label: 'FAQs', icon: '❓' },
     { id: 'testimonials', label: 'Testimonios', icon: '⭐' },
-    { id: 'availabilities', label: 'Disponibilidades', icon: '📅' },
-    { id: 'media', label: 'Imágenes y Video', icon: '📸' },
   ]
 
   return (
@@ -112,23 +110,6 @@ export function EditTourTabs({ initialData }: EditPageProps) {
           </div>
         )}
 
-        {activeTab === 'availabilities' && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Disponibilidades</h2>
-            <div className="bg-yellow-50 border border-yellow-200 p-4 rounded text-yellow-700 text-center">
-              Próximamente: Gestiona las disponibilidades y horarios
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'media' && (
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Imágenes y Video</h2>
-            <div className="bg-blue-50 border border-blue-200 p-4 rounded text-blue-700 text-center">
-              Las imágenes se gestionan desde la sección "Información General"
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )
