@@ -51,7 +51,7 @@ export function ToursGrid({ tours, destinations, categories }: ToursGridProps) {
   ].filter(Boolean).length
 
   const filtered = useMemo(() => {
-    const priceRange = PRICE_RANGES[selectedPriceIdx]
+    const priceRange = PRICE_RANGES[selectedPriceIdx] ?? { min: 0, max: Infinity, label: '' }
     return tours.filter(t => {
       const matchSearch = !search || t.title.toLowerCase().includes(search.toLowerCase())
       const matchCat = !selectedCategory || t.categories?.slug === selectedCategory
