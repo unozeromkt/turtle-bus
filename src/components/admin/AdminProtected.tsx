@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 interface AdminProtectedProps {
   children: React.ReactNode
@@ -14,13 +15,25 @@ export function AdminProtected({ children }: AdminProtectedProps) {
 
   useEffect(() => {
     const checkAuth = async () => {
-      // Simple check: if on admin routes, we'll protect at the layout level
-      // For now, just mark as ready to avoid infinite loading
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) {
+        router.replace('/admin/login')
+        return
+      }
       setIsReady(true)
     }
 
     checkAuth()
-  }, [])
+
+    // Escuchar cambios de sesión (logout desde otra pestaña, expiración, etc.)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) {
+        router.replace('/admin/login')
+      }
+    })
+
+    return () => subscription.unsubscribe()
+  }, [router])
 
   if (!isReady) {
     return (
