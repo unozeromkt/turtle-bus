@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase-admin'
 import DestinationForm from '@/app/admin/destinos/form'
 import { notFound } from 'next/navigation'
 

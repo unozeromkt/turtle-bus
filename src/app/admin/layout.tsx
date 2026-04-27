@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import LogoutButton from '@/components/admin/LogoutButton'
 import { AdminProtected } from '@/components/admin/AdminProtected'
 
@@ -7,6 +10,12 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+
+  if (pathname === '/admin/login') {
+    return <>{children}</>
+  }
+
   return (
     <AdminProtected>
       <div className="flex h-screen bg-gray-100">

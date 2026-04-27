@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase-admin'
 import { EditTourTabs } from '@/components/admin/EditTourTabs'
 import { notFound } from 'next/navigation'
 
