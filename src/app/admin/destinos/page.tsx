@@ -16,8 +16,12 @@ interface Destination {
   updated_at: string
 }
 
+interface DestinationWithTourCount extends Destination {
+  tour_count: number
+}
+
 export default function AdminDestinationsPage() {
-  const [destinations, setDestinations] = useState<any[]>([])
+  const [destinations, setDestinations] = useState<DestinationWithTourCount[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -41,7 +45,9 @@ export default function AdminDestinationsPage() {
 
       if (err) throw err
 
-      if (!data || data.length === 0) {
+      const destinationRows = (data ?? []) as Destination[]
+
+      if (destinationRows.length === 0) {
         console.log('No destinations found')
         setDestinations([])
         return
@@ -49,7 +55,7 @@ export default function AdminDestinationsPage() {
 
       // Count tours for each destination
       const withTourCount = await Promise.all(
-        (data || []).map(async (dest) => {
+        destinationRows.map(async (dest): Promise<DestinationWithTourCount> => {
           const { count } = await supabase
             .from('tours')
             .select('*', { count: 'exact', head: true })
