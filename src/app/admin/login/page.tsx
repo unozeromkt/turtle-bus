@@ -18,7 +18,7 @@ export default function AdminLoginPage() {
     setLoading(true)
 
     try {
-      const { error: authError } = await supabase.auth.signInWithPassword({
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
@@ -29,8 +29,15 @@ export default function AdminLoginPage() {
         return
       }
 
+      if (!data.session) {
+        setError('No se pudo iniciar la sesión. Intenta de nuevo.')
+        setLoading(false)
+        return
+      }
+
       // Login exitoso, redirigir al dashboard
-      router.push('/admin/dashboard')
+      router.replace('/admin/dashboard')
+      router.refresh()
     } catch (err) {
       setError('Error al iniciar sesión')
       setLoading(false)

@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase-admin'
 import { hashPassword } from '@/lib/auth/password'
 
 async function createDefaultAdmin() {

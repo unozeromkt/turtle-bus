@@ -1,4 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
+import { createBrowserClient } from '@supabase/ssr'
+import type { SupabaseClient } from '@supabase/supabase-js'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -8,11 +9,12 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 const globalForSupabase = globalThis as typeof globalThis & {
-  __supabaseBrowserClient?: ReturnType<typeof createClient>
+  __supabaseBrowserClient?: SupabaseClient
 }
 
 // Cliente público (browser) - singleton para evitar múltiples GoTrueClient en HMR.
-export const supabase = globalForSupabase.__supabaseBrowserClient ?? createClient(supabaseUrl, supabaseAnonKey)
+export const supabase =
+  globalForSupabase.__supabaseBrowserClient ?? createBrowserClient(supabaseUrl, supabaseAnonKey)
 
 if (typeof window !== 'undefined') {
   globalForSupabase.__supabaseBrowserClient = supabase
