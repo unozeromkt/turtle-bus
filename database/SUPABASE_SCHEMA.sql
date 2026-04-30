@@ -72,6 +72,9 @@ CREATE TABLE IF NOT EXISTS tours (
   -- Pricing & Duration
   price_adult NUMERIC NOT NULL,
   price_child NUMERIC,
+  is_promoted BOOLEAN DEFAULT false,
+  promo_original_price_adult NUMERIC,
+  promo_price_adult NUMERIC,
   duration TEXT NOT NULL,
   
   -- Media
@@ -116,6 +119,7 @@ CREATE INDEX idx_tours_category_id ON tours(category_id);
 CREATE INDEX idx_tours_slug ON tours(slug);
 CREATE INDEX idx_tours_is_published ON tours(is_published);
 CREATE INDEX idx_tours_is_featured ON tours(is_featured);
+CREATE INDEX idx_tours_is_promoted ON tours(is_promoted);
 
 -- Tabla: tour_faqs (preguntas frecuentes por tour)
 CREATE TABLE IF NOT EXISTS tour_faqs (

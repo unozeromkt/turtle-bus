@@ -9,28 +9,28 @@ export default function DestinationsPage() {
       name: 'Medellín',
       slug: 'medellin',
       description: 'La ciudad de la eterna primavera',
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
+      image: '/images/experiences/vida-nocturna-medellin.jpg',
       tours: 12,
     },
     {
       name: 'Guatapé',
       slug: 'guatape',
       description: 'Peñoles, pueblito colorido y naturaleza',
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
+      image: '/images/CTA-home.jpg',
       tours: 8,
     },
     {
-      name: 'Guarne',
-      slug: 'guarne',
-      description: 'Naturaleza virgen y cascadas',
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
+      name: 'Oriente Antioqueño',
+      slug: 'oriente-antioqueno',
+      description: 'Escapadas verdes, pueblos con encanto y rutas cercanas a Medellín',
+      image: '/images/experiences/naturaleza.jpg',
       tours: 6,
     },
     {
-      name: 'San Rafael',
-      slug: 'san-rafael',
-      description: 'Cascadas y senderismo',
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
+      name: 'Santa Fe de Antioquia',
+      slug: 'santa-fe-antioquia',
+      description: 'Arquitectura colonial, clima cálido y escapadas con historia',
+      image: '/images/experiences/cultura.jpg',
       tours: 5,
     },
   ]
@@ -40,7 +40,7 @@ export default function DestinationsPage() {
       <Header />
 
       <HeroBanner
-        title="Destinos"
+        title="Destinos de Antioquia"
         subtitle="Explora los mejores lugares en Antioquia"
       />
 

@@ -17,6 +17,9 @@ interface Tour {
   slug: string
   title: string
   price_adult: number
+  is_promoted: boolean
+  promo_original_price_adult: number | null
+  promo_price_adult: number | null
   is_published: boolean
   categories?: { name: string }
   destinations?: { name: string }
@@ -258,7 +261,14 @@ export default function AdminToursPage() {
                     </p>
                   </td>
                   <td className="px-6 py-4">
-                    <p className="font-medium">${tour.price_adult.toLocaleString()}</p>
+                    <div>
+                      <p className="font-medium">${tour.price_adult.toLocaleString()}</p>
+                      {tour.is_promoted && tour.promo_price_adult ? (
+                        <p className="text-xs text-amber-700 font-semibold">
+                          Promo: ${tour.promo_price_adult.toLocaleString()}
+                        </p>
+                      ) : null}
+                    </div>
                   </td>
                   <td className="px-6 py-4">
                     <button

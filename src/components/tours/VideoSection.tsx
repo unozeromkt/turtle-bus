@@ -28,7 +28,7 @@ export function VideoSection({ videoUrl, title = 'Video de la experiencia' }: Vi
   if (!embedUrl) return null
 
   return (
-    <section className="mb-12">
+    <section>
       <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <PlayCircle size={28} className="text-accent-orange" />
         {title}

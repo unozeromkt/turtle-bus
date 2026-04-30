@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
+import { Providers } from '@/components/Providers'
 
 export const metadata: Metadata = {
   title: 'Turtle Bus - Tours y Experiencias en Medellín y Guatapé',
@@ -27,7 +28,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="bg-neutral-light text-neutral-dark">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

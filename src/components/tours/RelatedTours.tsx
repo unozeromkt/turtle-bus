@@ -30,7 +30,7 @@ export function RelatedTours({ tours }: RelatedToursProps) {
   const visibleTours = tours.slice(startIndex, startIndex + itemsPerPage)
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-10 md:py-12 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">

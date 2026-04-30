@@ -8,9 +8,61 @@ import {
   type Tour,
 } from '@/lib/db/tours'
 
+function validatePromoPricing(formData: FormData) {
+  const isPromoted = formData.get('isPromoted') === 'true'
+  const promoOriginalRaw = formData.get('promoOriginalPriceAdult') as string
+  const promoPriceRaw = formData.get('promoPriceAdult') as string
+
+  if (!isPromoted) {
+    return { success: true as const }
+  }
+
+  if (!promoOriginalRaw || !promoPriceRaw) {
+    return {
+      success: false as const,
+      message: 'Si el tour está en promoción, debes ingresar precio antes y precio promoción',
+    }
+  }
+
+  const promoOriginal = parseFloat(promoOriginalRaw)
+  const promoPrice = parseFloat(promoPriceRaw)
+
+  if (Number.isNaN(promoOriginal) || Number.isNaN(promoPrice)) {
+    return {
+      success: false as const,
+      message: 'Los precios de promoción deben ser valores numéricos válidos',
+    }
+  }
+
+  if (promoOriginal <= 0 || promoPrice <= 0) {
+    return {
+      success: false as const,
+      message: 'Los precios de promoción deben ser mayores que cero',
+    }
+  }
+
+  if (promoPrice >= promoOriginal) {
+    return {
+      success: false as const,
+      message: 'El precio promoción debe ser menor que el precio antes',
+    }
+  }
+
+  return { success: true as const }
+}
+
 // ➕ Crear tour (server action)
 export async function createTourAction(formData: FormData) {
   try {
+    const promoValidation = validatePromoPricing(formData)
+    if (!promoValidation.success) {
+      return {
+        success: false,
+        error: promoValidation.message,
+        message: promoValidation.message,
+      }
+    }
+
     // Convertir FormData a objeto Tour
     const tourData: Partial<Tour> = {
       title: formData.get('title') as string,
@@ -19,6 +71,13 @@ export async function createTourAction(formData: FormData) {
       long_description: (formData.get('longDescription') as string) || null,
       price_adult: parseFloat(formData.get('priceAdult') as string),
       price_child: formData.get('priceChild') ? parseFloat(formData.get('priceChild') as string) : null,
+      is_promoted: formData.get('isPromoted') === 'true' || false,
+      promo_original_price_adult: formData.get('promoOriginalPriceAdult')
+        ? parseFloat(formData.get('promoOriginalPriceAdult') as string)
+        : null,
+      promo_price_adult: formData.get('promoPriceAdult')
+        ? parseFloat(formData.get('promoPriceAdult') as string)
+        : null,
       duration: formData.get('duration') as string,
       destination_id: formData.get('destinationId') as string,
       category_id: formData.get('categoryId') as string,
@@ -62,12 +121,28 @@ export async function createTourAction(formData: FormData) {
 // ✏️ Actualizar tour (server action)
 export async function updateTourAction(tourId: string, formData: FormData) {
   try {
+    const promoValidation = validatePromoPricing(formData)
+    if (!promoValidation.success) {
+      return {
+        success: false,
+        error: promoValidation.message,
+        message: promoValidation.message,
+      }
+    }
+
     const tourData: Partial<Tour> = {
       title: formData.get('title') as string,
       description: (formData.get('description') as string) || null,
       long_description: (formData.get('longDescription') as string) || null,
       price_adult: parseFloat(formData.get('priceAdult') as string),
       price_child: formData.get('priceChild') ? parseFloat(formData.get('priceChild') as string) : null,
+      is_promoted: formData.get('isPromoted') === 'true' || false,
+      promo_original_price_adult: formData.get('promoOriginalPriceAdult')
+        ? parseFloat(formData.get('promoOriginalPriceAdult') as string)
+        : null,
+      promo_price_adult: formData.get('promoPriceAdult')
+        ? parseFloat(formData.get('promoPriceAdult') as string)
+        : null,
       duration: formData.get('duration') as string,
       is_published: formData.get('isPublished') === 'true',
       is_featured: formData.get('isFeatured') === 'true' || false,

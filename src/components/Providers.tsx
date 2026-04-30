@@ -1,6 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
+import { CurrencyProvider } from '@/components/currency/CurrencyProvider'
 
 interface ProvidersProps {
   children: ReactNode
@@ -8,5 +9,5 @@ interface ProvidersProps {
 
 // Deprecated - we use Supabase Auth now, not NextAuth
 export function Providers({ children }: ProvidersProps) {
-  return <>{children}</>
+  return <CurrencyProvider>{children}</CurrencyProvider>
 }

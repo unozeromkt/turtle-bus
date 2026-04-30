@@ -52,7 +52,7 @@ export function HomeHero() {
   return (
     <div
       ref={heroRef}
-      className="relative w-full h-[120vh] overflow-hidden"
+      className="relative w-full h-[100svh] md:h-[120vh] overflow-hidden"
     >
       {/* Parallax background */}
       <motion.div
@@ -60,7 +60,13 @@ export function HomeHero() {
         style={{ y: imageY, height: '130%', top: '-15%' }}
       >
         <div
-          className="w-full h-full bg-cover bg-center"
+          className="h-full w-full bg-cover bg-center md:hidden"
+          style={{
+            backgroundImage: `url('/images/hero-bg-mobile.jpg')`,
+          }}
+        />
+        <div
+          className="hidden h-full w-full bg-cover bg-center md:block"
           style={{
             backgroundImage: `url('/images/hero-bg.jpg')`,
           }}
@@ -82,7 +88,7 @@ export function HomeHero() {
 
       {/* Content */}
       <motion.div
-        className="relative h-full flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto -mt-10"
+        className="relative h-full flex flex-col items-center justify-center text-center px-4 max-w-5xl mx-auto -mt-6 md:-mt-10"
         style={{ opacity: contentOpacity }}
       >
         <motion.div
@@ -94,7 +100,7 @@ export function HomeHero() {
           {/* Eyebrow tag */}
           <motion.div variants={fadeUp} className="flex items-center justify-center gap-2">
             <Sparkles size={18} className="text-gold-500" />
-            <span className="text-gold-500 font-black text-lg tracking-wide uppercase">
+            <span className="text-gold-500 font-black text-sm md:text-lg tracking-wide uppercase">
               Descubre experiencias únicas
             </span>
             <Sparkles size={18} className="text-gold-500" />
@@ -103,7 +109,7 @@ export function HomeHero() {
           {/* Main headline */}
           <motion.h1
             variants={fadeUp}
-            className="text-6xl md:text-8xl font-black leading-none text-white drop-shadow-2xl title-cabin"
+            className="text-5xl md:text-8xl font-black leading-[0.92] text-white drop-shadow-2xl title-cabin"
           >
             Vive{' '}
             <span className="text-gold-500">
@@ -115,7 +121,7 @@ export function HomeHero() {
           {/* Subheadline */}
           <motion.p
             variants={fadeUp}
-            className="text-xl md:text-2xl text-gray-100 drop-shadow-md font-semibold max-w-2xl mx-auto"
+            className="text-lg md:text-2xl text-gray-100 drop-shadow-md font-semibold max-w-2xl mx-auto px-3 md:px-0"
           >
             Tours de paragliding, naturaleza y cultura en Medellín y Guatapé
           </motion.p>
@@ -123,12 +129,12 @@ export function HomeHero() {
           {/* CTA Buttons */}
           <motion.div
             variants={fadeUp}
-            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+            className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-3 md:pt-4 w-full sm:w-auto"
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href="/tours"
-                className="inline-flex items-center justify-center gap-2 bg-accent-orange text-white font-black py-4 px-8 rounded-xl text-lg shadow-2xl hover:bg-orange-600 transition-colors"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 bg-accent-orange text-white font-black py-4 px-8 rounded-xl text-base md:text-lg shadow-2xl hover:bg-orange-600 transition-colors"
               >
                 Explorar Tours
                 <ArrowRight size={20} />
@@ -139,7 +145,7 @@ export function HomeHero() {
       </motion.div>
 
       {/* Image Marquee Strip */}
-      <div className="absolute bottom-0 left-0 right-0 h-64 overflow-hidden z-10">
+      <div className="absolute bottom-0 left-0 right-0 h-48 md:h-64 overflow-hidden z-10">
         {/* Edge fades */}
         <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-black/70 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-black/70 to-transparent z-10 pointer-events-none" />
@@ -150,10 +156,7 @@ export function HomeHero() {
           transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
         >
           {[...marqueeImages, ...marqueeImages].map((src, i) => (
-            <div
-              key={i}
-              className="relative h-64 w-48 shrink-0 rounded-xl overflow-hidden shadow-lg"
-            >
+            <div key={i} className="relative h-48 w-36 md:h-64 md:w-48 shrink-0 rounded-xl overflow-hidden shadow-lg">
               <Image
                 src={src}
                 fill
@@ -168,7 +171,7 @@ export function HomeHero() {
 
       {/* Bottom diagonal cut */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-20 bg-white"
+        className="absolute bottom-0 left-0 right-0 h-16 md:h-20 bg-white"
         style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 50%, 0 100%)' }}
       />
     </div>

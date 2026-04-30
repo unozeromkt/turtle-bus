@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Mail, Phone, User, AlertCircle, CheckCircle, Loader } from 'lucide-react'
 import { ReservationCalculator, type ReservationData } from './ReservationCalculator'
 import { AvailabilityChecker } from './AvailabilityChecker'
+import { useCurrency } from '@/components/currency/CurrencyProvider'
 
 interface ReservationFormProps {
   tourId: string
@@ -18,6 +19,7 @@ export function ReservationForm({
   priceAdult,
   priceChild,
 }: ReservationFormProps) {
+  const { formatPrice } = useCurrency()
   const [step, setStep] = useState<'availability' | 'details' | 'confirmation'>('availability')
   const [reservationData, setReservationData] = useState<ReservationData | null>(null)
   const [formData, setFormData] = useState({
@@ -145,7 +147,7 @@ export function ReservationForm({
               </div>
               <div>
                 <p className="text-xs font-semibold text-gray-500">Total</p>
-                <p className="font-black text-primary-600 text-lg">${reservationData?.totalPrice.toLocaleString()}</p>
+                <p className="font-black text-primary-600 text-lg">{reservationData ? formatPrice(reservationData.totalPrice) : ''}</p>
               </div>
             </div>
           </div>
@@ -296,7 +298,7 @@ export function ReservationForm({
               <p>
                 <span className="text-gray-600">Total a pagar:</span>{' '}
                 <span className="font-black text-primary-600 text-lg">
-                  ${reservationData?.totalPrice.toLocaleString()}
+                  {reservationData ? formatPrice(reservationData.totalPrice) : ''}
                 </span>
               </p>
             </div>

@@ -3,9 +3,8 @@
 import { useState } from 'react'
 import Calendar from 'react-calendar'
 import { Calendar as CalendarIcon, Users, Baby, CheckCircle2 } from 'lucide-react'
+import { useCurrency } from '@/components/currency/CurrencyProvider'
 import 'react-calendar/dist/Calendar.css'
-
-const priceFormatter = new Intl.NumberFormat('es-CO')
 
 interface TourReservationSidebarProps {
   tourTitle: string
@@ -18,14 +17,13 @@ export function TourReservationSidebar({
   priceAdult,
   priceChild = priceAdult * 0.7,
 }: TourReservationSidebarProps) {
+  const { formatPrice } = useCurrency()
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [adults, setAdults] = useState(1)
   const [children, setChildren] = useState(0)
   const [showCalendar, setShowCalendar] = useState(false)
 
   const totalPrice = adults * priceAdult + children * priceChild
-  const formattedAdultPrice = priceFormatter.format(priceAdult)
-  const formattedTotalPrice = priceFormatter.format(totalPrice)
 
   const handleReserve = () => {
     if (selectedDate) {
@@ -47,7 +45,7 @@ export function TourReservationSidebar({
       <div>
         <p className="text-sm text-gray-500 mb-1">Desde</p>
         <div className="flex items-baseline gap-1">
-          <span className="text-3xl font-black text-neutral-dark">${formattedAdultPrice}</span>
+          <span className="text-3xl font-black text-neutral-dark">{formatPrice(priceAdult)}</span>
           <span className="text-sm text-gray-600">por persona</span>
         </div>
       </div>
@@ -134,7 +132,7 @@ export function TourReservationSidebar({
       <div className="bg-primary-50 border border-primary-200 rounded-lg p-4">
         <div className="flex justify-between items-end">
           <span className="text-sm font-semibold text-gray-600">Total:</span>
-          <span className="text-2xl font-black text-primary-600">${formattedTotalPrice}</span>
+          <span className="text-2xl font-black text-primary-600">{formatPrice(totalPrice)}</span>
         </div>
       </div>
 

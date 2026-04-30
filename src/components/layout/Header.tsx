@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Menu, X, Search, Phone, Instagram, Facebook } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { CurrencySwitcher } from '@/components/currency/CurrencySwitcher'
 
 // Custom SVG icons for TikTok and TripAdvisor
 function TikTokIcon({ size = 18 }: { size?: number }) {
@@ -148,6 +149,8 @@ export function Header() {
             <Search size={19} />
           </button>
 
+          <CurrencySwitcher />
+
           {/* CTA */}
           <Link
             href="/tours"
@@ -256,6 +259,9 @@ export function Header() {
                     <Icon size={20} />
                   </a>
                 ))}
+              </div>
+              <div className="px-2 pt-3">
+                <CurrencySwitcher compact />
               </div>
             </div>
           </motion.div>

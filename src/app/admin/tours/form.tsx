@@ -29,6 +29,7 @@ export default function TourForm({
   const [galleryImages, setGalleryImages] = useState<string[]>(
     initialData?.gallery_images || []
   )
+  const [isPromoted, setIsPromoted] = useState(initialData?.is_promoted ?? false)
 
   useEffect(() => {
     loadOptions()
@@ -223,6 +224,60 @@ export default function TourForm({
               placeholder="25000"
             />
           </div>
+
+          <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 space-y-4">
+            <div>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="isPromoted"
+                  value="true"
+                  defaultChecked={initialData?.is_promoted ?? false}
+                  onChange={(e) => setIsPromoted(e.target.checked)}
+                  className="w-4 h-4 rounded"
+                />
+                <span className="font-medium">🔥 Tour en promoción</span>
+              </label>
+              <p className="text-xs text-amber-800 mt-2">
+                Si lo activas, este tour podrá mostrarse en la sección de promociones del home.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold mb-2">
+                Precio Antes ($)
+              </label>
+              <input
+                type="number"
+                name="promoOriginalPriceAdult"
+                step="1000"
+                min="0"
+                required={isPromoted}
+                defaultValue={initialData?.promo_original_price_adult || ''}
+                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                placeholder="520000"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold mb-2">
+                Precio Promoción ($)
+              </label>
+              <input
+                type="number"
+                name="promoPriceAdult"
+                step="1000"
+                min="0"
+                required={isPromoted}
+                defaultValue={initialData?.promo_price_adult || ''}
+                className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                placeholder="390000"
+              />
+              <p className="text-xs text-amber-800 mt-2">
+                El precio promoción debe ser menor que el precio antes.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Column 2 */}
@@ -392,7 +447,7 @@ export default function TourForm({
             defaultChecked={initialData?.is_featured ?? false}
             className="w-4 h-4 rounded"
           />
-          <span className="font-medium">⭐ Destacado (mostrar en home)</span>
+          <span className="font-medium">⭐ Favorito (mostrar en home)</span>
         </label>
       </div>
 

@@ -8,6 +8,9 @@ export type Tour = {
   long_description: string | null
   price_adult: number
   price_child: number | null
+  is_promoted: boolean
+  promo_original_price_adult: number | null
+  promo_price_adult: number | null
   duration: string
   featured_image: string | null
   gallery_images: string[] | null
@@ -47,6 +50,9 @@ export async function getAllPublishedTours() {
         description,
         price_adult,
         price_child,
+        is_promoted,
+        promo_original_price_adult,
+        promo_price_adult,
         duration,
         featured_image,
         destination_id,
@@ -138,6 +144,33 @@ export async function getFeaturedTours(limit: number = 4) {
     return data as any[]
   } catch (error) {
     console.error('Error fetching featured tours:', error)
+    throw error
+  }
+}
+
+export async function getPromotedTours(limit: number = 4) {
+  try {
+    const { data, error } = await supabaseAdmin
+      .from('tours')
+      .select(
+        `
+        *,
+        destinations:destination_id (name, slug),
+        categories:category_id (name, slug, icon)
+      `
+      )
+      .eq('is_published', true)
+      .eq('is_promoted', true)
+      .not('promo_original_price_adult', 'is', null)
+      .not('promo_price_adult', 'is', null)
+      .is('deleted_at', null)
+      .order('updated_at', { ascending: false })
+      .limit(limit)
+
+    if (error) throw error
+    return data as any[]
+  } catch (error) {
+    console.error('Error fetching promoted tours:', error)
     throw error
   }
 }
@@ -253,6 +286,9 @@ export async function getToursForAdmin(page: number = 1, limit: number = 10) {
         slug,
         title,
         price_adult,
+        is_promoted,
+        promo_original_price_adult,
+        promo_price_adult,
         is_published,
         is_featured,
         created_at,

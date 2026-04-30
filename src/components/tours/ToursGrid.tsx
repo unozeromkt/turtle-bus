@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, SlidersHorizontal, X } from 'lucide-react'
 import { TourCard } from './TourCard'
+import { useCurrency } from '@/components/currency/CurrencyProvider'
 
 interface Tour {
   id: string
@@ -30,14 +31,15 @@ interface ToursGridProps {
 }
 
 const PRICE_RANGES = [
-  { label: 'Todos los precios', min: 0, max: Infinity },
-  { label: 'Hasta $100.000', min: 0, max: 100000 },
-  { label: '$100.000 – $200.000', min: 100000, max: 200000 },
-  { label: '$200.000 – $400.000', min: 200000, max: 400000 },
-  { label: 'Más de $400.000', min: 400000, max: Infinity },
+  { min: 0, max: Infinity },
+  { min: 0, max: 100000 },
+  { min: 100000, max: 200000 },
+  { min: 200000, max: 400000 },
+  { min: 400000, max: Infinity },
 ]
 
 export function ToursGrid({ tours, destinations, categories }: ToursGridProps) {
+  const { formatPrice } = useCurrency()
   const [search, setSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [selectedDestination, setSelectedDestination] = useState<string | null>(null)
@@ -49,6 +51,26 @@ export function ToursGrid({ tours, destinations, categories }: ToursGridProps) {
     selectedDestination,
     selectedPriceIdx !== 0 ? true : null,
   ].filter(Boolean).length
+
+  const formattedPriceRanges = useMemo(
+    () =>
+      PRICE_RANGES.map((range, index) => {
+        if (index === 0) {
+          return 'Todos los precios'
+        }
+
+        if (range.min === 0) {
+          return `Hasta ${formatPrice(range.max)}`
+        }
+
+        if (!Number.isFinite(range.max)) {
+          return `Más de ${formatPrice(range.min)}`
+        }
+
+        return `${formatPrice(range.min)} – ${formatPrice(range.max)}`
+      }),
+    [formatPrice]
+  )
 
   const filtered = useMemo(() => {
     const priceRange = PRICE_RANGES[selectedPriceIdx] ?? { min: 0, max: Infinity, label: '' }
@@ -193,7 +215,7 @@ export function ToursGrid({ tours, destinations, categories }: ToursGridProps) {
                           : 'border-gray-200 text-gray-600 hover:border-primary-600'
                       }`}
                     >
-                      {range.label}
+                      {formattedPriceRanges[i]}
                     </button>
                   ))}
                 </div>

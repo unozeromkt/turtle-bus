@@ -30,16 +30,16 @@ export function GallerySection({ images, title = 'Galería de imágenes' }: Gall
   }
 
   return (
-    <section className="mb-12">
+    <section>
       <h2 className="text-2xl font-bold mb-6">📸 {title}</h2>
 
       {/* Thumbnail Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-8">
         {validImages.map((image, idx) => (
           <button
             key={idx}
             onClick={() => setSelectedIndex(idx)}
-            className="relative h-40 cursor-pointer rounded-lg overflow-hidden group"
+            className="relative aspect-square md:aspect-[4/3] cursor-pointer rounded-lg overflow-hidden group"
           >
             <Image
               src={image}

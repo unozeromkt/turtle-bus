@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Calendar, Users, Baby } from 'lucide-react'
+import { useCurrency } from '@/components/currency/CurrencyProvider'
 
 interface ReservationCalculatorProps {
   priceAdult: number
@@ -19,6 +20,7 @@ export function ReservationCalculator({
   priceChild = priceAdult * 0.7, // 30% descuento para niños por defecto
   onReservationChange,
 }: ReservationCalculatorProps) {
+  const { formatPrice } = useCurrency()
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [adults, setAdults] = useState(1)
   const [children, setChildren] = useState(0)
@@ -108,7 +110,7 @@ export function ReservationCalculator({
               +
             </button>
           </div>
-          <p className="text-xs text-gray-500 mt-1">${priceAdult.toLocaleString()} c/u</p>
+          <p className="text-xs text-gray-500 mt-1">{formatPrice(priceAdult)} c/u</p>
         </div>
 
         {/* Children */}
@@ -139,7 +141,7 @@ export function ReservationCalculator({
               +
             </button>
           </div>
-          <p className="text-xs text-gray-500 mt-1">${priceChild.toLocaleString()} c/u</p>
+          <p className="text-xs text-gray-500 mt-1">{formatPrice(priceChild)} c/u</p>
         </div>
       </div>
 
@@ -147,18 +149,18 @@ export function ReservationCalculator({
       <div className="bg-gradient-to-r from-primary-50 to-primary-100 p-4 rounded-lg border-2 border-primary-200">
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-700">Adultos: {adults} × ${priceAdult.toLocaleString()}</span>
-            <span className="font-bold">${(adults * priceAdult).toLocaleString()}</span>
+            <span className="text-gray-700">Adultos: {adults} × {formatPrice(priceAdult)}</span>
+            <span className="font-bold">{formatPrice(adults * priceAdult)}</span>
           </div>
           {children > 0 && (
             <div className="flex justify-between text-sm">
-              <span className="text-gray-700">Niños: {children} × ${priceChild.toLocaleString()}</span>
-              <span className="font-bold">${(children * priceChild).toLocaleString()}</span>
+              <span className="text-gray-700">Niños: {children} × {formatPrice(priceChild)}</span>
+              <span className="font-bold">{formatPrice(children * priceChild)}</span>
             </div>
           )}
           <div className="border-t-2 border-primary-300 pt-2 flex justify-between">
             <span className="font-bold text-neutral-dark">Total:</span>
-            <span className="text-2xl font-black text-primary-600">${totalPrice.toLocaleString()}</span>
+            <span className="text-2xl font-black text-primary-600">{formatPrice(totalPrice)}</span>
           </div>
         </div>
       </div>

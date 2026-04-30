@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Star, MapPin, Clock, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useCurrency } from '@/components/currency/CurrencyProvider'
 
 interface TourCardProps {
   id: string
@@ -29,6 +30,8 @@ export function TourCard({
   reviewCount = 128,
   isFeatured = false,
 }: TourCardProps) {
+  const { formatPrice } = useCurrency()
+
   return (
     <Link href={`/tours/${slug}`}>
       <motion.div
@@ -81,7 +84,7 @@ export function TourCard({
 
           {/* Price - Bottom Right */}
           <div className="absolute bottom-4 right-4 bg-primary-600 text-white px-4 py-2 rounded-lg font-bold shadow-lg">
-            ${priceAdult.toLocaleString()}
+            {formatPrice(priceAdult)}
           </div>
         </div>
 
