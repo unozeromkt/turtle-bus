@@ -212,6 +212,8 @@ CREATE TABLE IF NOT EXISTS blog_posts (
   content TEXT,
   featured_image TEXT,
   author TEXT,
+  meta_title TEXT,
+  meta_description TEXT,
   status TEXT DEFAULT 'draft', -- draft, published, archived
   is_published BOOLEAN DEFAULT false,
   published_at TIMESTAMP WITH TIME ZONE,
@@ -222,6 +224,7 @@ CREATE TABLE IF NOT EXISTS blog_posts (
 
 CREATE INDEX idx_blog_posts_slug ON blog_posts(slug);
 CREATE INDEX idx_blog_posts_is_published ON blog_posts(is_published);
+CREATE INDEX idx_blog_posts_meta_title ON blog_posts(meta_title);
 
 -- Tabla: site_settings (configuración general del sitio)
 CREATE TABLE IF NOT EXISTS site_settings (

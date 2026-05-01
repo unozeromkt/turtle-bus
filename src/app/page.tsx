@@ -10,7 +10,7 @@ import { ArrowRight, Mountain, Leaf, Palette, Heart, Moon, UtensilsCrossed } fro
 import { getFeaturedTours, getPromotedTours } from '@/lib/db/tours'
 import { TestimonialsCarousel } from '@/components/home/TestimonialsCarousel'
 import { VideoShowcase } from '@/components/home/VideoShowcase'
-import { BlogsSection } from '@/components/home/BlogsSection'
+import BlogsSection from '../components/home/BlogsSection'
 import { CTASection } from '@/components/home/CTASection'
 
 const categories = [
@@ -90,7 +90,7 @@ export default async function Home() {
   let promotedTours = []
   
   try {
-    ;[featuredTours, promotedTours] = await Promise.all([getFeaturedTours(8), getPromotedTours(4)])
+    ;[featuredTours, promotedTours] = await Promise.all([getFeaturedTours(6), getPromotedTours(4)])
   } catch (error) {
     console.error('Error loading featured tours:', error)
   }
@@ -276,6 +276,7 @@ export default async function Home() {
             ))}
           </StaggerOnScroll>
         </div>
+
       </section>
 
       {/* Descubrimiento por destino */}
@@ -308,21 +309,21 @@ export default async function Home() {
             </Link>
           </AnimateOnScroll>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
             {destinationBlocks.map((destination, index) => (
               <AnimateOnScroll key={destination.name} variant="fadeUp" delay={index * 0.08}>
                 <Link href={`/destinos/${destination.slug}`}>
-                  <div className="group relative overflow-hidden rounded-[28px] min-h-[320px] md:min-h-[360px] shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
+                  <div className="group relative overflow-hidden rounded-[28px] min-h-[250px] md:min-h-[280px] shadow-[0_18px_50px_rgba(15,23,42,0.10)]">
                     <img
                       src={destination.image}
                       alt={destination.name}
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/88 via-black/72 to-black/52" />
                     <div className="relative h-full flex flex-col justify-end p-6 text-white">
                       <p className="text-xs font-black uppercase tracking-[0.2em] text-white/70 mb-2">Destino recomendado</p>
-                      <h3 className="text-3xl font-black leading-tight title-cabin">{destination.name}</h3>
-                      <p className="mt-3 text-sm leading-6 text-white/80">{destination.description}</p>
+                      <h3 className="text-[2rem] md:text-[2.2rem] font-black leading-tight title-cabin">{destination.name}</h3>
+                      <p className="mt-3 max-w-[34rem] text-sm leading-6 text-white/88">{destination.description}</p>
                       <span className="mt-4 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.16em] text-white">
                         Descubrir destino
                         <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
