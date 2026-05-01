@@ -3,253 +3,11 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { TourCard } from '@/components/tours/TourCard'
 import { ChevronRight } from 'lucide-react'
+import { getDestinationBySlug } from '@/lib/db/destinations'
+import { getToursByDestination } from '@/lib/db/tours'
+import { notFound } from 'next/navigation'
 
-const destinations: { [key: string]: any } = {
-  medellin: {
-    name: 'Medellín',
-    title: 'La Ciudad de la Eterna Primavera',
-    description: 'Medellín, cuna de la innovación y la transformación social en Colombia. Descubre una ciudad vibrante, segura y llena de vida con barrios culturales, arte callejero, gastronomía de clase mundial y vistas panorámicas desde sus cerros tutelares.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop',
-    highlights: [
-      'Comuna 13: Transformación social y arte urbano',
-      'Pueblito Paisa: Arquitectura tradicional colombiana',
-      'Parque Bolívar: Vistas 360° de la ciudad',
-      'Gastronomía: Restaurantes con chef reconocidos',
-      'Transporte cable: Experiencia única y vistas',
-    ],
-    climate: 'Primavera todo el año, 25°C promedio',
-    bestTime: 'Todo el año',
-    tours: [
-      {
-        id: '1',
-        title: 'Medellín Día Completo: Arte y Transformación',
-        destination: 'Medellín',
-        duration: '8 horas',
-        priceFrom: 450000,
-        rating: 4.8,
-        reviewCount: 156,
-        featuredImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
-        slug: 'medellin-dia-completo',
-      },
-      {
-        id: '2',
-        title: 'Comuna 13: Tour Artístico y Cultural',
-        destination: 'Medellín',
-        duration: '4 horas',
-        priceFrom: 350000,
-        rating: 4.9,
-        reviewCount: 243,
-        featuredImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
-        slug: 'comuna-13-arte',
-      },
-      {
-        id: '3',
-        title: 'Teleférico Arví: Naturaleza y Vistas',
-        destination: 'Medellín',
-        duration: '5 horas',
-        priceFrom: 320000,
-        rating: 4.7,
-        reviewCount: 189,
-        featuredImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
-        slug: 'teleferico-arvi',
-      },
-      {
-        id: '4',
-        title: 'Gastronomía Medellinense: Sabores Auténticos',
-        destination: 'Medellín',
-        duration: '3 horas',
-        priceFrom: 280000,
-        rating: 4.9,
-        reviewCount: 267,
-        featuredImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
-        slug: 'gastronomia-medellin',
-      },
-    ],
-  },
-  guatape: {
-    name: 'Guatapé',
-    title: 'El Pueblito Más Colorido de Colombia',
-    description: 'Guatapé es un municipio mágico ubicado a solo 80km de Medellín. Famoso por sus coloridas calles, la majestuosa Piedra del Peñol y el sereno Embalse del Peñol. Ideal para amantes de la naturaleza, fotografía y aventura.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop',
-    highlights: [
-      'La Piedra del Peñol: Monolito de 220 metros',
-      'Pueblito colorido: Calles con arte popular',
-      'Embalse del Peñol: Actividades acuáticas',
-      'Fotografía profesional: Vistas icónicas',
-      'Gastronomía local: Trucha y especialidades',
-    ],
-    climate: 'Templado, 20°C promedio',
-    bestTime: 'Noviembre a Marzo (seco)',
-    tours: [
-      {
-        id: '5',
-        title: 'Piedra del Peñol y Pueblito: Clásico de Guatapé',
-        destination: 'Guatapé',
-        duration: '6 horas',
-        priceFrom: 380000,
-        rating: 4.9,
-        reviewCount: 512,
-        featuredImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
-        slug: 'piedra-penol-pueblito',
-      },
-      {
-        id: '6',
-        title: 'Embalse del Peñol: Kayak y Naturaleza',
-        destination: 'Guatapé',
-        duration: '4 horas',
-        priceFrom: 400000,
-        rating: 4.8,
-        reviewCount: 134,
-        featuredImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
-        slug: 'embalse-kayak',
-      },
-      {
-        id: '7',
-        title: 'Fotografía Profesional en Guatapé',
-        destination: 'Guatapé',
-        duration: '5 horas',
-        priceFrom: 550000,
-        rating: 4.9,
-        reviewCount: 89,
-        featuredImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
-        slug: 'fotografia-guatape',
-      },
-      {
-        id: '8',
-        title: 'Tour Gourmet: Gastronomía del Embalse',
-        destination: 'Guatapé',
-        duration: '5 horas',
-        priceFrom: 420000,
-        rating: 4.7,
-        reviewCount: 178,
-        featuredImage: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop',
-        slug: 'gourmet-guatape',
-      },
-    ],
-  },
-  'oriente-antioqueno': {
-    name: 'Oriente Antioqueño',
-    title: 'Naturaleza Cercana, Pueblos con Encanto y Escapadas Verdes',
-    description: 'El Oriente Antioqueño reúne paisajes montañosos, bosques, cascadas y pueblos con mucho carácter. Es una región ideal para viajes cortos desde Medellín, experiencias de naturaleza y planes con una energía más tranquila.',
-    image: '/images/experiences/naturaleza.jpg',
-    highlights: [
-      'Cascadas y charcos en municipios de montaña',
-      'Pueblos con cafés, plazas y ritmo local',
-      'Rutas de senderismo y miradores naturales',
-      'Planes de un día o escapadas de fin de semana',
-      'Acceso práctico desde Medellín',
-    ],
-    climate: 'Templado a fresco, según el municipio',
-    bestTime: 'Todo el año',
-    tours: [
-      {
-        id: '9',
-        title: 'Cascadas del Oriente y Senderismo Suave',
-        destination: 'Oriente Antioqueño',
-        duration: '6 horas',
-        priceFrom: 320000,
-        rating: 4.8,
-        reviewCount: 267,
-        featuredImage: '/images/experiences/naturaleza.jpg',
-        slug: 'caida-agua-el-retiro',
-      },
-      {
-        id: '10',
-        title: 'Ruta de Bosque y Avistamiento Natural',
-        destination: 'Oriente Antioqueño',
-        duration: '4 horas',
-        priceFrom: 350000,
-        rating: 4.9,
-        reviewCount: 145,
-        featuredImage: '/images/experiences/naturaleza.jpg',
-        slug: 'ruta-bosque-oriente',
-      },
-      {
-        id: '11',
-        title: 'Escapada de Naturaleza y Café en el Oriente',
-        destination: 'Oriente Antioqueño',
-        duration: '2 días',
-        priceFrom: 850000,
-        rating: 4.9,
-        reviewCount: 87,
-        featuredImage: '/images/experiences/naturaleza.jpg',
-        slug: 'escapada-cafe-oriente',
-      },
-      {
-        id: '12',
-        title: 'Plan Familiar entre Charcos y Picnic',
-        destination: 'Oriente Antioqueño',
-        duration: '5 horas',
-        priceFrom: 280000,
-        rating: 4.9,
-        reviewCount: 203,
-        featuredImage: '/images/experiences/naturaleza.jpg',
-        slug: 'plan-familiar-oriente',
-      },
-    ],
-  },
-  'santa-fe-antioquia': {
-    name: 'Santa Fe de Antioquia',
-    title: 'Patrimonio Colonial, Sol y Escapadas con Historia',
-    description: 'Santa Fe de Antioquia mezcla arquitectura colonial, calles empedradas, clima cálido y una identidad histórica muy fuerte. Es un destino ideal para quienes prefieren una experiencia cultural, lenta y muy fotogénica.',
-    image: '/images/experiences/cultura.jpg',
-    highlights: [
-      'Arquitectura colonial y plazas históricas',
-      'Calles empedradas y hoteles con encanto',
-      'Puente de Occidente y miradores cercanos',
-      'Clima cálido para una escapada relajada',
-      'Ritmo cultural y gastronómico más pausado',
-    ],
-    climate: 'Cálido y seco, 28°C promedio',
-    bestTime: 'Todo el año',
-    tours: [
-      {
-        id: '13',
-        title: 'Recorrido Colonial por Santa Fe',
-        destination: 'Santa Fe de Antioquia',
-        duration: '7 horas',
-        priceFrom: 650000,
-        rating: 4.9,
-        reviewCount: 56,
-        featuredImage: '/images/experiences/cultura.jpg',
-        slug: 'recorrido-colonial-santa-fe',
-      },
-      {
-        id: '14',
-        title: 'Puente de Occidente y Patrimonio',
-        destination: 'Santa Fe de Antioquia',
-        duration: '5 horas',
-        priceFrom: 580000,
-        rating: 4.7,
-        reviewCount: 78,
-        featuredImage: '/images/experiences/cultura.jpg',
-        slug: 'puente-occidente-santa-fe',
-      },
-      {
-        id: '15',
-        title: 'Escapada Cultural y Gastronómica',
-        destination: 'Santa Fe de Antioquia',
-        duration: '8 horas',
-        priceFrom: 700000,
-        rating: 4.8,
-        reviewCount: 92,
-        featuredImage: '/images/experiences/cultura.jpg',
-        slug: 'escapada-cultural-santa-fe',
-      },
-      {
-        id: '16',
-        title: 'Fin de Semana Colonial en Pareja',
-        destination: 'Santa Fe de Antioquia',
-        duration: '6 horas',
-        priceFrom: 520000,
-        rating: 4.9,
-        reviewCount: 34,
-        featuredImage: '/images/experiences/cultura.jpg',
-        slug: 'pareja-santa-fe-antioquia',
-      },
-    ],
-  },
-}
+const fallbackImage = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop'
 
 export default async function DestinationDetail({
   params,
@@ -257,23 +15,23 @@ export default async function DestinationDetail({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const destination = destinations[slug]
+  let destination
+  let tours: any[] = []
+
+  try {
+    destination = await getDestinationBySlug(slug)
+
+    if (!destination.is_published) {
+      notFound()
+    }
+
+    tours = await getToursByDestination(destination.id)
+  } catch (error) {
+    notFound()
+  }
 
   if (!destination) {
-    return (
-      <main className="min-h-screen flex flex-col">
-        <Header />
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Destino no encontrado</h1>
-            <Link href="/destinos" className="btn btn-primary">
-              Volver a Destinos
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </main>
-    )
+    notFound()
   }
 
   return (
@@ -283,7 +41,7 @@ export default async function DestinationDetail({
       {/* Hero */}
       <div
         className="relative h-96 bg-cover bg-center"
-        style={{ backgroundImage: `url('${destination.image}')` }}
+        style={{ backgroundImage: `url('${destination.featured_image || fallbackImage}')` }}
       >
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="absolute inset-0 flex items-end">
@@ -300,6 +58,11 @@ export default async function DestinationDetail({
               <span>{destination.name}</span>
             </div>
             <h1 className="text-5xl font-black mb-2 title-cabin">{destination.title}</h1>
+            {(destination.city || destination.region) && (
+              <p className="text-white/85 text-lg">
+                {[destination.city, destination.region].filter(Boolean).join(', ')}
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -313,43 +76,30 @@ export default async function DestinationDetail({
             </p>
           </div>
 
-          {/* Info Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <h3 className="text-sm font-bold text-primary-600 mb-2">CLIMA</h3>
-              <p className="text-xl font-bold text-neutral-dark">{destination.climate}</p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <h3 className="text-sm font-bold text-primary-600 mb-2">MEJOR ÉPOCA</h3>
-              <p className="text-xl font-bold text-neutral-dark">{destination.bestTime}</p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <h3 className="text-sm font-bold text-primary-600 mb-2">TOURS DISPONIBLES</h3>
-              <p className="text-xl font-bold text-neutral-dark">{destination.tours.length}</p>
-            </div>
-          </div>
-
-          {/* Highlights */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-black mb-8 title-cabin">Puntos Destacados</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {destination.highlights.map((highlight: string, i: number) => (
-                <div key={i} className="flex gap-4 p-4 bg-white rounded-lg shadow-sm">
-                  <div className="text-2xl">✓</div>
-                  <p className="font-semibold text-gray-700">{highlight}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Tours */}
           <div>
             <h2 className="text-3xl font-black mb-8 title-cabin">Tours en {destination.name}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {destination.tours.map((tour: any) => (
-                <TourCard key={tour.id} {...tour} />
-              ))}
-            </div>
+            {tours.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {tours.map((tour: any) => (
+                  <TourCard
+                    key={tour.id}
+                    id={tour.id}
+                    title={tour.title}
+                    slug={tour.slug}
+                    priceAdult={tour.price_adult}
+                    duration={tour.duration}
+                    destination={destination.name}
+                    featuredImage={tour.featured_image || fallbackImage}
+                    isFeatured={tour.is_featured}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center text-gray-600">
+                Aún no hay tours publicados para este destino.
+              </div>
+            )}
           </div>
         </div>
       </section>

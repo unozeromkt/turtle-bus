@@ -1,6 +1,7 @@
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroBanner } from '@/components/hero/HeroBanner'
+import { ContactForm } from '@/components/forms/ContactForm'
 import { Mail, Phone, MapPin } from 'lucide-react'
 
 export default function ContactPage() {
@@ -11,6 +12,7 @@ export default function ContactPage() {
       <HeroBanner
         title="Contacto"
         subtitle="¿Preguntas? Estamos aquí para ayudarte"
+        backgroundImage="/images/banner-contactocompress.jpg"
       />
 
       <section className="py-16 bg-neutral-light flex-1">
@@ -49,33 +51,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white p-8 rounded-lg shadow-sm">
-              <h2 className="text-2xl font-bold mb-6">Envíanos un mensaje</h2>
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Nombre</label>
-                  <input type="text" className="input" placeholder="Tu nombre" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Email</label>
-                  <input type="email" className="input" placeholder="tu@email.com" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Teléfono</label>
-                  <input type="tel" className="input" placeholder="Tu teléfono" />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2">Mensaje</label>
-                  <textarea
-                    className="input min-h-32 resize-none"
-                    placeholder="Escribe tu mensaje aquí..."
-                  ></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary w-full">
-                  Enviar Mensaje
-                </button>
-              </form>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </section>

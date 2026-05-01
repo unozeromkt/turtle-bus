@@ -66,6 +66,33 @@ export async function getRecentInquiries(limit: number = 10) {
   }
 }
 
+export async function getAllInquiries() {
+  try {
+    const { data, error } = await supabaseAdmin
+      .from('inquiries')
+      .select(
+        `
+        id,
+        name,
+        email,
+        phone,
+        message,
+        source,
+        status,
+        created_at,
+        tours:tour_id (title, slug)
+      `
+      )
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+    return data as any[]
+  } catch (error) {
+    console.error('Error fetching inquiries:', error)
+    throw error
+  }
+}
+
 // 📊 Obtener inquiries por tour
 export async function getInquiriesByTour(tourId: string) {
   try {

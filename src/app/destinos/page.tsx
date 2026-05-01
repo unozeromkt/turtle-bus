@@ -2,38 +2,21 @@ import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { HeroBanner } from '@/components/hero/HeroBanner'
+import { getPublishedDestinations, getDestinationWithTourCount } from '@/lib/db/destinations'
 
-export default function DestinationsPage() {
-  const destinations = [
-    {
-      name: 'Medellín',
-      slug: 'medellin',
-      description: 'La ciudad de la eterna primavera',
-      image: '/images/experiences/vida-nocturna-medellin.jpg',
-      tours: 12,
-    },
-    {
-      name: 'Guatapé',
-      slug: 'guatape',
-      description: 'Peñoles, pueblito colorido y naturaleza',
-      image: '/images/CTA-home.jpg',
-      tours: 8,
-    },
-    {
-      name: 'Oriente Antioqueño',
-      slug: 'oriente-antioqueno',
-      description: 'Escapadas verdes, pueblos con encanto y rutas cercanas a Medellín',
-      image: '/images/experiences/naturaleza.jpg',
-      tours: 6,
-    },
-    {
-      name: 'Santa Fe de Antioquia',
-      slug: 'santa-fe-antioquia',
-      description: 'Arquitectura colonial, clima cálido y escapadas con historia',
-      image: '/images/experiences/cultura.jpg',
-      tours: 5,
-    },
-  ]
+const fallbackImage = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=900&fit=crop'
+
+export default async function DestinationsPage() {
+  let destinations: Array<any> = []
+
+  try {
+    const publishedDestinations = await getPublishedDestinations()
+    destinations = await Promise.all(
+      publishedDestinations.map((destination) => getDestinationWithTourCount(destination.id))
+    )
+  } catch (error) {
+    console.error('Error loading destinations page:', error)
+  }
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -42,6 +25,7 @@ export default function DestinationsPage() {
       <HeroBanner
         title="Destinos de Antioquia"
         subtitle="Explora los mejores lugares en Antioquia"
+        backgroundImage="/images/destinos-antioquia.jpg"
       />
 
       <section className="py-16 bg-neutral-light flex-1">
@@ -52,11 +36,11 @@ export default function DestinationsPage() {
                 <div className="group cursor-pointer">
                   <div
                     className="w-full h-48 rounded-lg bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                    style={{ backgroundImage: `url('${dest.image}')` }}
+                    style={{ backgroundImage: `url('${dest.featured_image || fallbackImage}')` }}
                   />
                   <h3 className="text-xl font-bold mt-4">{dest.name}</h3>
-                  <p className="text-gray-600 mb-3">{dest.description}</p>
-                  <p className="text-sm text-primary-600 font-semibold">{dest.tours} tours →</p>
+                  <p className="text-gray-600 mb-3">{dest.short_description || dest.description || 'Descubre este destino con Turtle Bus'}</p>
+                  <p className="text-sm text-primary-600 font-semibold">{dest.tour_count || 0} tours →</p>
                 </div>
               </Link>
             ))}

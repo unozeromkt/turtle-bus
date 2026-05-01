@@ -7,21 +7,60 @@ import {
   type Inquiry,
 } from '@/lib/db/inquiries'
 
+export type InquiryActionState = {
+  success: boolean
+  message: string
+  error?: string
+}
+
+const initialInquiryActionState: InquiryActionState = {
+  success: false,
+  message: '',
+}
+
 // ➕ Crear inquietud (desde formulario público)
-export async function createInquiryAction(formData: FormData) {
+export async function createInquiryAction(
+  _prevState: InquiryActionState = initialInquiryActionState,
+  formData: FormData
+) {
   try {
+    const name = String(formData.get('name') || '').trim()
+    const email = String(formData.get('email') || '').trim()
+    const phone = String(formData.get('phone') || '').trim()
+    const message = String(formData.get('message') || '').trim()
+    const tourId = String(formData.get('tourId') || '').trim()
+    const source = String(formData.get('source') || 'web').trim()
+
+    if (!name || !email || !message) {
+      return {
+        success: false,
+        message: 'Completa nombre, email y mensaje para enviar tu consulta.',
+        error: 'missing_required_fields',
+      }
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    if (!emailPattern.test(email)) {
+      return {
+        success: false,
+        message: 'Ingresa un email valido para poder contactarte.',
+        error: 'invalid_email',
+      }
+    }
+
     const inquiryData: Partial<Inquiry> = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      phone: (formData.get('phone') as string) || null,
-      message: (formData.get('message') as string) || null,
-      tour_id: (formData.get('tourId') as string) || null,
-      source: (formData.get('source') as string) || 'web',
+      name,
+      email,
+      phone: phone || null,
+      message,
+      tour_id: tourId || null,
+      source: source || 'web',
     }
 
     const createdInquiry = await createInquiry(inquiryData)
     
-    revalidatePath('/admin/leads')
+    revalidatePath('/admin/mensajes')
 
     return { 
       success: true, 
@@ -47,7 +86,7 @@ export async function updateInquiryStatusAction(
   try {
     const updatedInquiry = await updateInquiryStatus(inquiryId, status, notes)
     
-    revalidatePath('/admin/leads')
+    revalidatePath('/admin/mensajes')
 
     return { 
       success: true, 
