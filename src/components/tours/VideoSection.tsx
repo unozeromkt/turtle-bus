@@ -10,18 +10,37 @@ export function VideoSection({ videoUrl, title = 'Video de la experiencia' }: Vi
 
   // Extract video ID from YouTube URL
   const getYouTubeEmbedUrl = (url: string) => {
-    let videoId = ''
-    
-    if (url.includes('youtube.com/watch?v=')) {
-      videoId = url.split('v=')[1]?.split('&')[0] || ''
-    } else if (url.includes('youtu.be/')) {
-      videoId = url.split('youtu.be/')[1]?.split('?')[0] || ''
-    } else if (url.includes('vimeo.com/')) {
-      videoId = url.split('vimeo.com/')[1]?.split('?')[0] || ''
-      return `https://player.vimeo.com/video/${videoId}`
+    try {
+      const parsedUrl = new URL(url)
+      const hostname = parsedUrl.hostname.replace('www.', '')
+      const pathSegments = parsedUrl.pathname.split('/').filter(Boolean)
+
+      if (hostname === 'youtu.be') {
+        const videoId = pathSegments[0]
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : null
+      }
+
+      if (hostname === 'youtube.com' || hostname === 'm.youtube.com') {
+        if (parsedUrl.pathname === '/watch') {
+          const videoId = parsedUrl.searchParams.get('v')
+          return videoId ? `https://www.youtube.com/embed/${videoId}` : null
+        }
+
+        if (pathSegments[0] === 'shorts' || pathSegments[0] === 'embed') {
+          const videoId = pathSegments[1]
+          return videoId ? `https://www.youtube.com/embed/${videoId}` : null
+        }
+      }
+
+      if (hostname === 'vimeo.com' || hostname === 'player.vimeo.com') {
+        const videoId = pathSegments[pathSegments.length - 1]
+        return videoId ? `https://player.vimeo.com/video/${videoId}` : null
+      }
+    } catch {
+      return null
     }
-    
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : null
+
+    return null
   }
 
   const embedUrl = getYouTubeEmbedUrl(videoUrl)

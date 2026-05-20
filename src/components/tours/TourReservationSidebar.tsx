@@ -10,12 +10,14 @@ interface TourReservationSidebarProps {
   tourTitle: string
   priceAdult: number
   priceChild?: number
+  className?: string
 }
 
 export function TourReservationSidebar({
   tourTitle,
   priceAdult,
   priceChild = priceAdult * 0.7,
+  className = 'sticky top-24 hidden lg:block bg-white rounded-xl shadow-lg p-6 border border-gray-100 space-y-6',
 }: TourReservationSidebarProps) {
   const { formatPrice } = useCurrency()
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
@@ -40,7 +42,7 @@ export function TourReservationSidebar({
   ]
 
   return (
-    <div className="sticky top-24 bg-white rounded-xl shadow-lg p-6 border border-gray-100 space-y-6 hidden lg:block">
+    <div className={className}>
       {/* Price Section */}
       <div>
         <p className="text-sm text-gray-500 mb-1">Desde</p>

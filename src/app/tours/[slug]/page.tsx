@@ -11,6 +11,7 @@ import { ItinerarySection } from '@/components/tours/ItinerarySection'
 import { IncludesSection } from '@/components/tours/IncludesSection'
 import { ExcludesSection } from '@/components/tours/ExcludesSection'
 import { RelatedTours } from '@/components/tours/RelatedTours'
+import { MobileReservationBar } from '@/components/tours/MobileReservationBar'
 import { AnimateOnScroll } from '@/components/ui/AnimateOnScroll'
 import { getTourBySlug, getRelatedTours } from '@/lib/db/tours'
 import { notFound } from 'next/navigation'
@@ -54,7 +55,7 @@ export default async function TourDetail({ params }: Props) {
 
       {/* Content */}
       <div className="flex-1 bg-white">
-        <div className="max-w-6xl mx-auto px-4 pt-12 pb-8 md:pb-10">
+        <div className="max-w-6xl mx-auto px-4 pt-12 pb-32 md:pb-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content - 2 columns */}
             <div className="lg:col-span-2 space-y-6 md:space-y-8">
@@ -147,6 +148,12 @@ export default async function TourDetail({ params }: Props) {
 
       {/* Related Tours */}
       {relatedTours.length > 0 && <RelatedTours tours={relatedTours} />}
+
+      <MobileReservationBar
+        tourTitle={tour.title}
+        priceAdult={tour.price_adult}
+        priceChild={tour.price_child}
+      />
 
       {/* CTA Section - adventure style */}
       <AnimateOnScroll variant="scale">
