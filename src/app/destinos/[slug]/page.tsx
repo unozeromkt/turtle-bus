@@ -57,7 +57,7 @@ export default async function DestinationDetail({
               <ChevronRight size={16} />
               <span>{destination.name}</span>
             </div>
-            <h1 className="text-5xl font-black mb-2 title-cabin">{destination.title}</h1>
+            <h1 className="text-5xl font-black mb-2 title-cabin">{destination.name}</h1>
             {(destination.city || destination.region) && (
               <p className="text-white/85 text-lg">
                 {[destination.city, destination.region].filter(Boolean).join(', ')}

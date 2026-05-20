@@ -110,7 +110,7 @@ export async function updateBlogPostAction(blogPostId: string, formData: FormDat
   }
 }
 
-export async function deleteBlogPostAction(blogPostId: string, slug: string) {
+export async function deleteBlogPostAction(blogPostId: string, slug: string, _formData: FormData) {
   try {
     await deleteBlogPost(blogPostId)
 
@@ -118,14 +118,8 @@ export async function deleteBlogPostAction(blogPostId: string, slug: string) {
     revalidatePath('/blog')
     revalidatePath(`/blog/${slug}`)
     revalidatePath('/')
-
-    return { success: true, message: 'Blog eliminado exitosamente' }
   } catch (error) {
     console.error('Error deleting blog post:', error)
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Error al eliminar el blog',
-      message: 'No se pudo eliminar el blog',
-    }
+    throw new Error(error instanceof Error ? error.message : 'No se pudo eliminar el blog')
   }
 }
